@@ -314,6 +314,7 @@ MonoBehaviour:
   currentHp: 0
   atk: 0
   def: 0
+  criticalChance: 10
   damege: 1
   increaceDmg: 0
   inventory: []
@@ -473,6 +474,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1211425304981269753, guid: 42c6ab066df433a4fabd4512e24b63f4, type: 3}
   m_PrefabInstance: {fileID: 1211425303451580023}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &66435886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1635556775504162966, guid: 373a365dc6f1f164a83fe34bd0c94871, type: 3}
+  m_PrefabInstance: {fileID: 1372535285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &66435893
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66435886}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.76, y: 2.68, z: 1}
+  m_Center: {x: 0, y: 1.36, z: 0}
 --- !u!1 &90054082 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6405673602396756890, guid: 2d350cbad538f4dc4af4331b367ccca2, type: 3}
@@ -513,6 +532,7 @@ MonoBehaviour:
   currentHp: 100
   atk: 0
   def: 10
+  criticalChance: 0
   damege: 1
   increaceDmg: 0
   coin: {fileID: 0}
@@ -1084,7 +1104,6 @@ MonoBehaviour:
   weaponTier: 1
   attributes: 0
   controller: {fileID: 0}
-  hitEffect: {fileID: 0}
   targetTag: 
 --- !u!1001 &477214029
 PrefabInstance:
@@ -1440,11 +1459,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolingPrefabs:
-  - prafab: {fileID: 4038884710633389735, guid: 0a0718d5c0e29984b81876df626743bf, type: 3}
+  - prefab: {fileID: 4038884710633389735, guid: 0a0718d5c0e29984b81876df626743bf, type: 3}
     poolingCount: 10
-  - prafab: {fileID: 8123500623578600021, guid: 85bdf6f03a1015345bc1ffd190a1ab80, type: 3}
+  - prefab: {fileID: 8499476955035779425, guid: 829d01c871507a24bbb8623016f0e35c, type: 3}
     poolingCount: 10
-  - prafab: {fileID: 8499476955035779425, guid: 829d01c871507a24bbb8623016f0e35c, type: 3}
+  - prefab: {fileID: 8123500623578600021, guid: 85bdf6f03a1015345bc1ffd190a1ab80, type: 3}
+    poolingCount: 10
+  - prefab: {fileID: 2274243836118731394, guid: 9d26eb5ad9e156349ab1027b311e3d06, type: 3}
     poolingCount: 10
 --- !u!4 &700203579
 Transform:
@@ -1785,6 +1806,7 @@ MonoBehaviour:
   currentHp: 500
   atk: 0
   def: 50
+  criticalChance: 0
   damege: 1
   increaceDmg: 0
   coin: {fileID: 0}
@@ -2342,6 +2364,7 @@ MonoBehaviour:
   currentHp: 100
   atk: 0
   def: 50
+  criticalChance: 0
   damege: 1
   increaceDmg: 0
   coin: {fileID: 0}
@@ -6454,6 +6477,7 @@ MonoBehaviour:
   currentHp: 0
   atk: 0
   def: 0
+  criticalChance: 0
   damege: 1
   increaceDmg: 0
 --- !u!54 &1219369230
@@ -7749,6 +7773,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3052215299878214994, guid: 373a365dc6f1f164a83fe34bd0c94871, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 373a365dc6f1f164a83fe34bd0c94871, type: 3}
 --- !u!1 &1377741584 stripped
@@ -8127,6 +8155,7 @@ MonoBehaviour:
   currentHp: 0
   atk: 0
   def: 10
+  criticalChance: 0
   damege: 1
   increaceDmg: 0
 --- !u!1 &1606663332
@@ -8412,6 +8441,7 @@ MonoBehaviour:
   currentHp: 300
   atk: 0
   def: 50
+  criticalChance: 0
   damege: 1
   increaceDmg: 0
   coin: {fileID: 0}
@@ -14428,6 +14458,7 @@ MonoBehaviour:
   currentHp: 400
   atk: 0
   def: 50
+  criticalChance: 0
   damege: 1
   increaceDmg: 0
   coin: {fileID: 1942591113625154718, guid: 84a0c2d8f9ce8eb4f8939e8ef7da696f, type: 3}
