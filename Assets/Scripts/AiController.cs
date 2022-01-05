@@ -15,7 +15,7 @@ public abstract class AiController : MonoBehaviour
     // Ai : 스테이지 입장시 플레이어를 쫒아옴 일정거리 보다 가까울 시 랜덤행동
     #endregion
 
-    protected void Start()
+    virtual protected void Start()
     {
         targetTf = GameObject.FindGameObjectWithTag("Player").transform;
         anim = GetComponent<Animator>();

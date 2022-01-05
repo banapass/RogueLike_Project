@@ -19,6 +19,7 @@ public class Enemy : Character
     public bool isHit;
     bool isCheck = false;
 
+
     #region 남은 적 구현 목록
     // 몬스터 죽을시 무기 및 아이템 드랍
     // 몬스터 Ai
@@ -45,6 +46,7 @@ public class Enemy : Character
     private void OnDisable()
     {
         Instantiate(coin, transform.position, Quaternion.identity);
+
     }
     protected override void SetDeadEvent()
     {
@@ -93,11 +95,31 @@ public class Enemy : Character
         float totalAtk = character.atk * (character.damege + character.increaceDmg);
         if (!isHit)
         {
-            ShowDamage((int)(totalAtk - (int)DamageReduction(totalAtk)));
-            CurrentHp -= totalAtk - (int)DamageReduction(totalAtk);
+            if (Critical(character))
+            {
+                ShowDamage(((int)(totalAtk - (int)DamageReduction(totalAtk)) * 2));
+                CurrentHp -= (totalAtk - (int)DamageReduction(totalAtk)) * 2;
+                Debug.Log("Critical");
+
+            }
+            else
+            {
+                ShowDamage((int)(totalAtk - (int)DamageReduction(totalAtk)));
+                CurrentHp -= totalAtk - (int)DamageReduction(totalAtk);
+            }
+
             Debug.Log(name + " " + "현재 Hp : " + CurrentHp + "데미지 : " + (totalAtk - (int)DamageReduction(totalAtk)));
             isHit = true;
         }
+    }
+    protected bool Critical(Character player)
+    {
+        int randomNum = Random.Range(1, 101);
+        if (randomNum <= player.criticalChance)
+            return true;
+        else
+            return false;
+
     }
     protected void ShowDamage(int damage)
     {

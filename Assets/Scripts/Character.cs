@@ -9,11 +9,12 @@ public class Character : MonoBehaviour
     public float currentHp;
     public float atk;
     public float def;
+    public int criticalChance;
     const int CONST_DEF = 100;
     public float damege = 1.0f;
     public float increaceDmg;
 
-    public event Action deadEvent;
+    public Action deadEvent;
 
     public float CurrentHp
     {

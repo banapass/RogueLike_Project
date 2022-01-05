@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class SwordManController : AiController
 {
+    [SerializeField] private float atkRange;
     bool isAttack;
 
 
-
+    protected override void Start()
+    {
+        base.Start();
+        atkRange = 2.2f;
+    }
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(isAttack);
         CheckAnim();
         Ai();
     }
@@ -20,7 +24,12 @@ public class SwordManController : AiController
         if (!isAttack)
         {
             int randomNum = Random.Range(1, 4);
+            isAttack = true;
+
+            nav.SetDestination(transform.position);
+            anim.SetBool("isRun", false);
             Debug.Log(randomNum);
+
             switch (randomNum)
             {
                 case 1:
@@ -33,7 +42,7 @@ public class SwordManController : AiController
                     anim.SetTrigger("Attack" + randomNum);
                     break;
             }
-            isAttack = true;
+
         }
     }
 
@@ -44,10 +53,9 @@ public class SwordManController : AiController
     }
     private void Ai()
     {
-        if (Vector3.Distance(transform.position, targetTf.position) < 2.2f)
+        if (Vector3.Distance(transform.position, targetTf.position) <= 2.2f)
         {
-            nav.SetDestination(transform.position);
-            anim.SetBool("isRun", false);
+
             Attack();
         }
         else if (Vector3.Distance(transform.position, targetTf.position) > 2.2f && !isAttack)

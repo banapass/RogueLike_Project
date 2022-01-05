@@ -17,7 +17,7 @@ public class TestAnimation : MonoBehaviour
 
     private void OnShoot()
     {
-        GameObject temp = TestDic.GetParts("arrow");
+        GameObject temp = ObjectPools.GetParts("arrow");
         Rigidbody rigid = temp.GetComponent<Rigidbody>();
         rigid.velocity = ((playerTf.position + Vector3.up) - fireTf.position).normalized * arrowSpeed;
         temp.transform.position = fireTf.position;

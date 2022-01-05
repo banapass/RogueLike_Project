@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected WeaponTier weaponTier; // 무기 티어
     [SerializeField] protected WeaponAttributes attributes; // 무기 속성
     [SerializeField] protected PlayerController controller;
-    [SerializeField] protected GameObject hitEffect; // 이펙트
+    // [SerializeField] protected GameObject hitEffect; // 이펙트
     [SerializeField] protected string targetTag;
 
     // 캐싱
@@ -64,7 +64,9 @@ public class Weapon : MonoBehaviour
                 //Character[] temp = other.GetComponent<Character>();
                 target = other.GetComponent<Enemy>();
                 if (!target.isHit)
-                    Instantiate(hitEffect, hitPoint.position, hitPoint.rotation);
+                {
+                    ObjectPools.GetParts("atkEffect").transform.position = hitPoint.transform.position;
+                }
                 target.OnHit(player);
 
 

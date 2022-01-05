@@ -56,5 +56,11 @@ public static class ExtensionMethod
         return value.GetCurrentAnimatorStateInfo(0).IsName(animName) &&
                value.GetCurrentAnimatorStateInfo(0).normalizedTime >= endTime;
     }
+    public static string CloneRemove(this string value)
+    {
+        int temp = value.IndexOf("(Clone)");
+        string strTemp = value.Substring(temp);
+        return strTemp;
+    }
 
 }

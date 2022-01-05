@@ -13,6 +13,7 @@ public class Player : Character
     [SerializeField] private Weapon equipWeapon;
     [SerializeField] private GameObject weaponTest;
     [SerializeField] private Animator playerAnim;
+    //public int criticalChance;
     public float atkSpeed = 1;
 
     public Weapon EquipWeapon

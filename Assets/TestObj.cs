@@ -15,7 +15,7 @@ public class TestObj : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            TestDic.GetParts("Canvas").transform.position = transform.position;
+            ObjectPools.GetParts("Canvas").transform.position = transform.position;
         }
     }
 }

@@ -19,7 +19,7 @@ public class Arrow : MonoBehaviour
             currentTime += Time.deltaTime;
             if (currentTime >= setTime)
             {
-                TestDic.ReturnParts(this.gameObject, "arrow");
+                ObjectPools.ReturnParts(this.gameObject, "arrow");
             }
             yield return null;
         }
@@ -30,7 +30,7 @@ public class Arrow : MonoBehaviour
         if (other.tag == "Player" && !other.GetComponent<PlayerController>().isDodge)
         {
             Player target = other.GetComponent<Player>();
-            TestDic.ReturnParts(this.gameObject, "arrow");
+            ObjectPools.ReturnParts(this.gameObject, "arrow");
         }
     }
 

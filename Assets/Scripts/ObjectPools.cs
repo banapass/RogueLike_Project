@@ -7,7 +7,7 @@ using UnityEngine;
 [System.Serializable]
 public struct PoolIngredient
 {
-    public GameObject prafab;
+    public GameObject prefab;
     public int poolingCount;
 }
 //test
@@ -29,10 +29,10 @@ public class Pool : MonoBehaviour
     }
 }
 
-public class TestDic : MonoBehaviour
+public class ObjectPools : MonoBehaviour
 {
 
-    public static TestDic instance;
+    public static ObjectPools instance;
     public List<PoolIngredient> poolingPrefabs;
     Dictionary<string, Pool> poolingDic = new Dictionary<string, Pool>();
     private void Awake()
@@ -43,25 +43,21 @@ public class TestDic : MonoBehaviour
     void Start()
     {
 
-        CreatePool();
+        CreatePools();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
-    private void CreatePool()
+    private void CreatePools()
     {
         for (int i = 0; i < poolingPrefabs.Count; i++)
         {
             Pool tempPool = new Pool();
-            tempPool.CreatePool(poolingPrefabs[i].prafab, transform, poolingPrefabs[i].poolingCount);
-            poolingDic.Add(poolingPrefabs[i].prafab.name, tempPool);
+            tempPool.CreatePool(poolingPrefabs[i].prefab, transform, poolingPrefabs[i].poolingCount);
+            poolingDic.Add(poolingPrefabs[i].prefab.name, tempPool);
         }
     }
     /// <summary>
-    /// arrow , atkEffect1,
+    /// arrow , atkEffect, atkCritical
     /// 
     /// </summary>
     public static GameObject GetParts(string partsName)
@@ -75,7 +71,7 @@ public class TestDic : MonoBehaviour
         }
         else
         {
-            GameObject newObj = instance.poolingDic[partsName].pooling.Dequeue();
+            GameObject newObj = Instantiate(instance.SearchParts(partsName));
             newObj.transform.SetParent(null);
             newObj.SetActive(true);
             return newObj;
@@ -86,5 +82,16 @@ public class TestDic : MonoBehaviour
         parts.SetActive(false);
         parts.transform.SetParent(instance.transform);
         instance.poolingDic[partsName].pooling.Enqueue(parts);
+    }
+    private GameObject SearchParts(string partsName)
+    {
+        for (int i = 0; i < poolingPrefabs.Count; i++)
+        {
+            if (poolingPrefabs[i].prefab.name == partsName)
+            {
+                return poolingPrefabs[i].prefab;
+            }
+        }
+        return null;
     }
 }
