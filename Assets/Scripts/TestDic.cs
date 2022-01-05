@@ -10,7 +10,7 @@ public struct PoolIngredient
     public GameObject prafab;
     public int poolingCount;
 }
-
+//test
 public class Pool : MonoBehaviour
 {
     public Queue<GameObject> pooling = new Queue<GameObject>();
