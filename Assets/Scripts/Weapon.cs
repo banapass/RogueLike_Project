@@ -63,11 +63,8 @@ public class Weapon : MonoBehaviour
             {
                 //Character[] temp = other.GetComponent<Character>();
                 target = other.GetComponent<Enemy>();
-                if (!target.isHit)
-                {
-                    ObjectPools.GetParts("atkEffect").transform.position = hitPoint.transform.position;
-                }
-                target.OnHit(player);
+
+                target.OnHit(player, hitPoint);
 
 
                 //col.enabled = false; // 한번에 여러번 공격 방지

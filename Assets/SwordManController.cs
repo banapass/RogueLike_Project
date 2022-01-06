@@ -16,8 +16,9 @@ public class SwordManController : AiController
     // Update is called once per frame
     void Update()
     {
-        CheckAnim();
+        //CheckAnim();
         Ai();
+        Debug.Log(isAttack);
     }
     protected override void Attack()
     {
@@ -28,7 +29,6 @@ public class SwordManController : AiController
 
             nav.SetDestination(transform.position);
             anim.SetBool("isRun", false);
-            Debug.Log(randomNum);
 
             switch (randomNum)
             {
@@ -44,7 +44,9 @@ public class SwordManController : AiController
             }
 
         }
+
     }
+
 
     protected override void ChasePlayer()
     {
@@ -55,8 +57,8 @@ public class SwordManController : AiController
     {
         if (Vector3.Distance(transform.position, targetTf.position) <= 2.2f)
         {
-
             Attack();
+            transform.LookAt(targetTf.position);
         }
         else if (Vector3.Distance(transform.position, targetTf.position) > 2.2f && !isAttack)
             ChasePlayer();

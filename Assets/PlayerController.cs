@@ -104,13 +104,13 @@ public class PlayerController : MonoBehaviour
         for (int i = 1; i < 4; i++)
         {
 
-            if (SetAnim("GreatSword_Attack" + i, 0.35f, 0.7f) && !isDodge)
+            if (SetAnim("GreatSword_Attack" + i, 0.3f, 0.6f) && !isDodge)
             {
                 SetAttack(true);
                 if (Input.GetMouseButton(0)) // 입력가능 구간안에서 마우스 클릭시 콤보어택
                     playerAnim.SetTrigger("Combo");
             }
-            if (EndAnim("GreatSword_Attack" + i, 0.88f))
+            if (EndAnim("GreatSword_Attack" + i, 0.65f))
             {
                 SetAttack(false);
             }

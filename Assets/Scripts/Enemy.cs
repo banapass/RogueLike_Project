@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Enemy : Character
 {
     [SerializeField] protected GameObject coin;
@@ -90,7 +91,7 @@ public class Enemy : Character
         }
     }
 
-    public override void OnHit(Character character)
+    public override void OnHit(Character character, Transform hit)
     {
         float totalAtk = character.atk * (character.damege + character.increaceDmg);
         if (!isHit)
@@ -99,12 +100,14 @@ public class Enemy : Character
             {
                 ShowDamage(((int)(totalAtk - (int)DamageReduction(totalAtk)) * 2));
                 CurrentHp -= (totalAtk - (int)DamageReduction(totalAtk)) * 2;
+                ObjectPools.GetParts("atkCritical").transform.position = hit.transform.position;
                 Debug.Log("Critical");
 
             }
             else
             {
                 ShowDamage((int)(totalAtk - (int)DamageReduction(totalAtk)));
+                ObjectPools.GetParts("atkEffect").transform.position = hit.transform.position;
                 CurrentHp -= totalAtk - (int)DamageReduction(totalAtk);
             }
 
@@ -124,7 +127,7 @@ public class Enemy : Character
     protected void ShowDamage(int damage)
     {
         GameObject temp = Instantiate(damageText, transform.GetChild(0));
-        temp.transform.position = transform.position + Vector3.up;
+        temp.transform.localPosition = transform.localPosition - Vector3.up * 0.5f + (Vector3.forward) * 1.5f;
         temp.GetComponent<DamageTextConroller>().damage = damage;
     }
 

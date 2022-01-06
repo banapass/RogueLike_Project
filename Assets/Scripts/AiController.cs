@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class AiController : MonoBehaviour
+
+public class AiController : MonoBehaviour
 {
     [SerializeField] protected Transform targetTf;
     [SerializeField] protected Animator anim;
@@ -21,7 +22,7 @@ public abstract class AiController : MonoBehaviour
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
     }
-    abstract protected void ChasePlayer();
-    abstract protected void Attack();
+    virtual protected void ChasePlayer() { }
+    virtual protected void Attack() { }
 
 }

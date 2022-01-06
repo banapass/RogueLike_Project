@@ -73,7 +73,7 @@ public class Character : MonoBehaviour
     {
         return atk * (def / (def + CONST_DEF));
     }
-    virtual public void OnHit(Character character)
+    virtual public void OnHit(Character character, Transform hit)
     {
         float totalAtk = character.atk * (character.damege + character.increaceDmg);
 

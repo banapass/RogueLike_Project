@@ -14,7 +14,7 @@ public class Player : Character
     [SerializeField] private GameObject weaponTest;
     [SerializeField] private Animator playerAnim;
     //public int criticalChance;
-    public float atkSpeed = 1;
+    public float atkSpeed = 2;
 
     public Weapon EquipWeapon
     {
@@ -49,7 +49,7 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
-
+        playerAnim.SetFloat("AttackSpeed", atkSpeed);
         //if (Input.GetKeyDown(KeyCode.F))
         //{
         //    OnEquipWeapon();
@@ -94,9 +94,9 @@ public class Player : Character
         base.SetDeadEvent();
 
     }
-    public override void OnHit(Character character)
+    public override void OnHit(Character character, Transform hit)
     {
-        base.OnHit(character);
+        //base.OnHit(character);
 
     }
 }
