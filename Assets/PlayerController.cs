@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -104,25 +105,21 @@ public class PlayerController : MonoBehaviour
         for (int i = 1; i < 4; i++)
         {
 
-            if (SetAnim("GreatSword_Attack" + i, 0.3f, 0.6f) && !isDodge)
+            if (SetAnim("GreatSword_Attack" + i, 0.3f, 0.7f) && !isDodge)
             {
-                SetAttack(true);
                 if (Input.GetMouseButton(0)) // 입력가능 구간안에서 마우스 클릭시 콤보어택
                     playerAnim.SetTrigger("Combo");
-            }
-            if (EndAnim("GreatSword_Attack" + i, 0.65f))
-            {
-                SetAttack(false);
             }
 
         }
 
 
     }
-    private void SetAttack(bool isAtk)
+    public void SetAttack(int boolCheck)
     {
-        isAttack = isAtk;
-        weaponCol.enabled = isAtk;
+        bool temp = Convert.ToBoolean(boolCheck);
+        isAttack = temp;
+        weaponCol.enabled = temp;
     }
     #endregion
 
@@ -133,7 +130,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             isDodge = true;
-            SetAttack(false);
+            SetAttack(0);
             playerAnim.SetTrigger("Dodge");
             // this.tag = "Invincibility";
 
@@ -142,7 +139,7 @@ public class PlayerController : MonoBehaviour
         {
             isDodge = false;
             // this.tag = "Player";
-            SetAttack(false);
+            SetAttack(0);
         }
 
     }

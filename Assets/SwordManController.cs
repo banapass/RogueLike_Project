@@ -18,7 +18,6 @@ public class SwordManController : AiController
     {
         //CheckAnim();
         Ai();
-        Debug.Log(isAttack);
     }
     protected override void Attack()
     {

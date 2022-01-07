@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class UiManager : MonoBehaviour
 {
     [SerializeField] private Player player;
+    [SerializeField] private CameraMovement targetCamera;
+    [SerializeField] private Slider sensSlider;
     [SerializeField] private Image hpbar;
     [SerializeField] private GameObject menu;
     [SerializeField] private TextMeshProUGUI hpText;
@@ -22,6 +24,7 @@ public class UiManager : MonoBehaviour
     void Update()
     {
         State();
+        MouseSens();
     }
     private void State()
     {
@@ -36,4 +39,10 @@ public class UiManager : MonoBehaviour
     {
         SceneManager.LoadScene("Title");
     }
+    private void MouseSens()
+    {
+
+        targetCamera.sens = sensSlider.value * 10;
+    }
+
 }

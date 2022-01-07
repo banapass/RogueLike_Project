@@ -69,4 +69,8 @@ public class StageManager : MonoBehaviour
     {
         player.atkSpeed += 0.2f;
     }
+    public void CriticalChanceUp()
+    {
+        player.criticalChance += 10;
+    }
 }

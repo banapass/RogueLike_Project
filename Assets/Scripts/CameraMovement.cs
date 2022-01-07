@@ -6,12 +6,12 @@ public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private Transform targetTf;
     [SerializeField] float followSpeed = 10;
-    [SerializeField] float sens;
     [SerializeField] float clampAngle = 70;
 
     private float rotX;
     private float rotY;
 
+    public float sens;
     public Transform cam;
     public Vector3 dirNormalized;
     public Vector3 finalDir;

@@ -64,7 +64,7 @@ public class Enemy : Character
     {
         for (int i = 1; i < 4; i++)
         {
-            isCheck |= controller.EndAnim("GreatSword_Attack" + i, 0.85f);
+            isCheck |= controller.EndAnim("GreatSword_Attack" + i, 0.65f);
             //  Debug.Log("isCheck" + i + "번째 = " + controller.EndAnim("GreatSword_Attack" + i));
         }
 
