@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     {
         if (enemies.Length <= 0)
         {
-            targetObj.SetActive(false);
+            targetObj.transform.GetChild(0).gameObject.SetActive(true);
         }
         else
         {

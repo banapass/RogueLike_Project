@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class UiManager : MonoBehaviour
+public class UiManager : SingleTon<UiManager>
 {
     [SerializeField] private Player player;
     [SerializeField] private CameraMovement targetCamera;
@@ -18,6 +18,7 @@ public class UiManager : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        targetCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
     }
 
     // Update is called once per frame

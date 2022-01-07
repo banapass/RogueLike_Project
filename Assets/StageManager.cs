@@ -3,24 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 
-public class StageManager : MonoBehaviour
+public class StageManager : SingleTon<StageManager>
 {
 
     [SerializeField] Player player;
     [SerializeField] Transform gridBase;
     [SerializeField] GameObject target;
     [SerializeField] Button[] gridList;
+    [SerializeField] List<string> scenes = new List<string>();
+    [SerializeField] List<string> stages = new List<string>();
     [SerializeField] float atkIncrease;
     [SerializeField] float defIncrease;
     [SerializeField] int createCount;
+    static int stageCount;
     bool isOpen;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        // gridList = gridBase.GetComponentsInChildren<Button>();
+        //gridList = gridBase.GetComponentsInChildren<Button>();
+        GetAllScene();
+        //RandomChoiceStage();
         SetGrid();
     }
 
@@ -30,6 +36,21 @@ public class StageManager : MonoBehaviour
 
     }
 
+    private void GetAllScene()
+    {
+        foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
+        {
+            scenes.Add(scene.path);
+        }
+
+    }
+    public static void RandomChoiceStage()
+    {
+        int randomNum = Random.Range(0, instance.scenes.Count);
+        SceneManager.LoadScene(instance.scenes[randomNum]);
+        instance.scenes.Remove(instance.scenes[randomNum]);
+        stageCount++;
+    }
     private void SetGrid()
     {
         for (int i = 0; i < createCount; i++)
@@ -39,8 +60,6 @@ public class StageManager : MonoBehaviour
                 gridList[randomNum].gameObject.SetActive(true);
             else
                 i--;
-
-
         }
     }
     public void AtkUp()

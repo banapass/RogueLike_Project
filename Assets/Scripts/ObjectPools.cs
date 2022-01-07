@@ -29,16 +29,16 @@ public class Pool : MonoBehaviour
     }
 }
 
-public class ObjectPools : MonoBehaviour
+public class ObjectPools : SingleTon<ObjectPools>
 {
 
-    public static ObjectPools instance;
+    //public static ObjectPools instance;
     public List<PoolIngredient> poolingPrefabs;
     Dictionary<string, Pool> poolingDic = new Dictionary<string, Pool>();
-    private void Awake()
-    {
-        instance = this;
-    }
+    // private void Awake()
+    // {
+    //     instance = this;
+    // }
     // Start is called before the first frame update
     void Start()
     {
