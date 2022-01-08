@@ -18,7 +18,8 @@ public class StageManager : SingleTon<StageManager>
     [SerializeField] float atkIncrease;
     [SerializeField] float defIncrease;
     [SerializeField] int createCount;
-    static int stageCount;
+    public static int stageCount;
+    public static string nextScene;
     bool isOpen;
     // Start is called before the first frame update
     void Start()
@@ -40,16 +41,50 @@ public class StageManager : SingleTon<StageManager>
     {
         foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
         {
-            scenes.Add(scene.path);
+            if (scene.path.IndexOf("Stage") != -1)
+            {
+                scenes.Add(scene.path);
+            }
         }
 
     }
     public static void RandomChoiceStage()
     {
         int randomNum = Random.Range(0, instance.scenes.Count);
-        SceneManager.LoadScene(instance.scenes[randomNum]);
+        LoadingScene(instance.scenes[randomNum]);
         instance.scenes.Remove(instance.scenes[randomNum]);
         stageCount++;
+    }
+    public static void LoadingScene(string scenePath)
+    {
+        nextScene = scenePath;
+        SceneManager.LoadScene("LoadingScene");
+    }
+    public static IEnumerator SetLoadingScene(Image progressBar, TMPro.TextMeshProUGUI progressText)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(nextScene);
+        operation.allowSceneActivation = false;
+        float delay = 0;
+        while (!operation.isDone)
+        {
+            progressBar.fillAmount = operation.progress;
+            progressText.text = (progressBar.fillAmount * 100) + "%";
+
+            if (operation.progress == 0.9f)
+            {
+                delay += Time.unscaledDeltaTime;
+                progressBar.fillAmount = Mathf.Lerp(0.9f, 1, delay);
+                progressText.text = (progressBar.fillAmount * 100) + "%";
+                if (progressBar.fillAmount >= 1f)
+                {
+                    operation.allowSceneActivation = true;
+                    yield break;
+                }
+                yield return null;
+            }
+
+        }
+        yield return null;
     }
     private void SetGrid()
     {
@@ -62,6 +97,7 @@ public class StageManager : SingleTon<StageManager>
                 i--;
         }
     }
+
     public void AtkUp()
     {
         player.increaceDmg += atkIncrease;

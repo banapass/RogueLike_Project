@@ -8,6 +8,8 @@ TagManager:
   - Collide
   - Potal
   - Gate
+  - StartPoint
+  - LookCamera
   layers:
   - Default
   - TransparentFX
