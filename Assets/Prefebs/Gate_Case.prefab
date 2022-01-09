@@ -121,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1586826114847994, guid: 2b0d7f8f779c4ed4b96621647861c04c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1586826114847994, guid: 2b0d7f8f779c4ed4b96621647861c04c, type: 3}
       propertyPath: m_TagString
@@ -234,8 +234,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.3598593, y: 1.4100362, z: 0.6897602}
-  m_Center: {x: 0.038368873, y: 0.013176562, z: -0.15511984}
+  m_Size: {x: 1.3598593, y: 1.4100362, z: 0.40961403}
+  m_Center: {x: 0.038368873, y: 0.013176562, z: -0.015046792}
 --- !u!114 &6653092169810500796
 MonoBehaviour:
   m_ObjectHideFlags: 0

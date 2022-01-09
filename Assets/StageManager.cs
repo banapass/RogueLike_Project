@@ -31,11 +31,6 @@ public class StageManager : SingleTon<StageManager>
         SetGrid();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private void GetAllScene()
     {

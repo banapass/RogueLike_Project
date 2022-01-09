@@ -12,9 +12,7 @@ public class StartPoint : MonoBehaviour
     private void SetPlayerPos()
     {
         GameObject temp = GameObject.FindGameObjectWithTag("Player");
-        GameObject cam = GameObject.FindGameObjectWithTag("LookCamera");
         temp.transform.position = transform.localPosition;
         temp.transform.rotation = transform.localRotation;
-        cam.transform.position = transform.position;
     }
 }
