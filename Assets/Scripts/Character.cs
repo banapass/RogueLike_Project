@@ -16,7 +16,7 @@ public class Character : MonoBehaviour
 
     public Action deadEvent;
 
-    public float CurrentHp
+    virtual public float CurrentHp
     {
         set
         {
@@ -49,7 +49,7 @@ public class Character : MonoBehaviour
         get { return def; }
     }
 
-    #region     
+    #region 공식 정리   
     // 체력 전체 퍼센트 공식 : (currentHp / maxHp) * 100;
     #endregion
 
@@ -65,7 +65,6 @@ public class Character : MonoBehaviour
     // 기본 베이스 DeadEvent
     virtual protected void SetDeadEvent()
     {
-        deadEvent = null;
         deadEvent += () => gameObject.SetActive(false);
     }
     // 피해감소율
@@ -73,11 +72,6 @@ public class Character : MonoBehaviour
     {
         return atk * (def / (def + CONST_DEF));
     }
-    virtual public void OnHit(Character character, Transform hit)
-    {
-        float totalAtk = character.atk * (character.damege + character.increaceDmg);
+    virtual public void OnHit(Character character, Transform hit) { }
 
-        CurrentHp += totalAtk - (int)DamageReduction(totalAtk);
-        Debug.Log(name + " " + "현재 Hp : " + CurrentHp);
-    }
 }

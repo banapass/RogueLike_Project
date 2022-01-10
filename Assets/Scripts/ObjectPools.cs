@@ -34,7 +34,7 @@ public class ObjectPools : SingleTon<ObjectPools>
 
     //public static ObjectPools instance;
     public List<PoolIngredient> poolingPrefabs;
-    Dictionary<string, Pool> poolingDic = new Dictionary<string, Pool>();
+    private Dictionary<string, Pool> poolingDic = new Dictionary<string, Pool>();
     // private void Awake()
     // {
     //     instance = this;
@@ -54,6 +54,7 @@ public class ObjectPools : SingleTon<ObjectPools>
             Pool tempPool = new Pool();
             tempPool.CreatePool(poolingPrefabs[i].prefab, transform, poolingPrefabs[i].poolingCount);
             poolingDic.Add(poolingPrefabs[i].prefab.name, tempPool);
+            Debug.Log(poolingPrefabs[i].prefab.name);
         }
     }
     /// <summary>
@@ -65,8 +66,10 @@ public class ObjectPools : SingleTon<ObjectPools>
         if (instance.poolingDic[partsName].pooling.Count > 0)
         {
             GameObject obj = instance.poolingDic[partsName].pooling.Dequeue();
+            Debug.Log(instance.poolingDic[partsName].pooling.Count);
             obj.transform.SetParent(null);
             obj.SetActive(true);
+            //Debug.Log("가져감");
             return obj;
         }
         else

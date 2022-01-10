@@ -5,8 +5,11 @@ using UnityEngine.AI;
 
 public class EnemyController : AiController
 {
-    bool isAttack;
 
+    protected override void Awake()
+    {
+        base.Awake();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -37,11 +40,14 @@ public class EnemyController : AiController
 
     protected override void Attack()
     {
-        isMove = false;
-        transform.LookAt(targetTf.position);
-        nav.SetDestination(transform.position);
-        anim.SetTrigger("Attack1");
-        anim.SetBool("isMove", isMove);
+        if (!enemy.isDie)
+        {
+            isMove = false;
+            transform.LookAt(targetTf.position);
+            nav.SetDestination(transform.position);
+            anim.SetTrigger("Attack1");
+            anim.SetBool("isMove", isMove);
+        }
     }
     protected void Die()
     {

@@ -13,7 +13,7 @@ public class StageManager : SingleTon<StageManager>
     [SerializeField] Transform gridBase;
     [SerializeField] GameObject target;
     [SerializeField] Button[] gridList;
-    [SerializeField] List<string> scenes = new List<string>();
+    public List<string> scenes = new List<string>();
     [SerializeField] List<string> stages = new List<string>();
     [SerializeField] float atkIncrease;
     [SerializeField] float defIncrease;
@@ -49,6 +49,10 @@ public class StageManager : SingleTon<StageManager>
         LoadingScene(instance.scenes[randomNum]);
         instance.scenes.Remove(instance.scenes[randomNum]);
         stageCount++;
+    }
+    public static void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
     public static void LoadingScene(string scenePath)
     {

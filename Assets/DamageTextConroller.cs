@@ -13,27 +13,28 @@ public class DamageTextConroller : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        targetText = GetComponent<TextMeshProUGUI>();
+        Debug.Log("Test");
+
         textColor = targetText.color;
         targetText.text = damage.ToString();
-        StartCoroutine(TakeDamageAction());
+        //  StartCoroutine(TakeDamageAction());
 
 
     }
-    // private void OnEnable()
-    // {
+    private void OnEnable()
+    {
+        targetText = GetComponent<TextMeshProUGUI>();
+        StartCoroutine(TakeDamageAction());
 
-    //     StartCoroutine(TakeDamageAction());
-
-    // }
-    // private void OnDisable()
-    // {
-
-    //     ObjectPools.ReturnParts(this.gameObject, "DamageText");
-    // }
+    }
+    private void OnDisable()
+    {
+        //ObjectPools.ReturnParts(this.gameObject, "DamageText");
+    }
 
     private IEnumerator TakeDamageAction()
     {
+        textColor = Color.white;
         textColor.a = 1;
         targetText.color = textColor;
         while (true)
@@ -45,7 +46,7 @@ public class DamageTextConroller : MonoBehaviour
 
             if (targetText.color.a <= 0)
             {
-                Destroy(gameObject);
+                ObjectPools.ReturnParts(this.gameObject, name.RemoveClone());
                 break;
             }
             yield return null;

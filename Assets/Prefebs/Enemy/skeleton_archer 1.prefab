@@ -1504,6 +1504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699655614618dd44492f7a210c248dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrowSpeed: 0
   fireTf: {fileID: 4790206173498515306}
 --- !u!195 &6832250377240878800
 NavMeshAgent:
@@ -1570,8 +1571,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.4926856, y: 2.03015, z: 1}
+  m_Center: {x: 0.0788578, y: 1.01825, z: 0.000000001410327}
 --- !u!114 &4790206173823696505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1588,6 +1589,7 @@ MonoBehaviour:
   currentHp: 200
   atk: 10
   def: 50
+  criticalChance: 0
   damege: 1
   increaceDmg: 0
   coin: {fileID: 1942591113625154718, guid: 84a0c2d8f9ce8eb4f8939e8ef7da696f, type: 3}

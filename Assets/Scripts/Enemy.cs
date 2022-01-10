@@ -14,11 +14,31 @@ public class Enemy : Character
     [SerializeField] protected LayerMask layerMask;
     [SerializeField] protected GameObject damageText;
     [SerializeField] protected Transform damageDispalyTf;
+    [SerializeField] protected Animator controlAnim;
     [SerializeField] protected float checkRange = 5f;
 
     protected bool isAttack;
     public bool isHit;
+    public bool isDie;
     bool isCheck = false;
+
+    public override float CurrentHp
+    {
+        get { return currentHp; }
+        set
+        {
+            currentHp = value;
+            if (currentHp <= 0)
+            {
+                isDie = true;
+                controlAnim.SetTrigger("Die");
+                //controlAnim.ResetTrigger("Hit");
+
+                currentHp = 0;
+            }
+        }
+
+    }
 
 
     #region 남은 적 구현 목록
@@ -32,6 +52,7 @@ public class Enemy : Character
         targetTf = GameObject.FindGameObjectWithTag("MainCamera").transform;
         hpBar = transform.GetChild(0).GetChild(0).GetComponent<Image>();
         canvas = transform.GetChild(0).GetComponent<Canvas>();
+        controlAnim = GetComponent<AiController>().anim;
         damageDispalyTf = transform;
         SetDeadEvent();
     }
@@ -46,12 +67,19 @@ public class Enemy : Character
     }
     private void OnDisable()
     {
+        Debug.Log(gameObject.name + " OnDisable ");
+
+
         Instantiate(coin, transform.position, Quaternion.identity);
+
 
     }
     protected override void SetDeadEvent()
     {
+        deadEvent = null;
+        deadEvent += ReleaseText;
         base.SetDeadEvent();
+
     }
     protected void EnemyHpbar()
     {
@@ -94,13 +122,14 @@ public class Enemy : Character
     public override void OnHit(Character character, Transform hit)
     {
         float totalAtk = character.atk * (character.damege + character.increaceDmg);
-        if (!isHit)
+        if (!isHit && !isDie)
         {
             if (Critical(character))
             {
                 ShowDamage(((int)(totalAtk - (int)DamageReduction(totalAtk)) * 2));
                 CurrentHp -= (totalAtk - (int)DamageReduction(totalAtk)) * 2;
                 ObjectPools.GetParts("atkCritical").transform.position = hit.transform.position;
+                controlAnim.SetTrigger("Hit");
                 Debug.Log("Critical");
 
             }
@@ -109,6 +138,7 @@ public class Enemy : Character
                 ShowDamage((int)(totalAtk - (int)DamageReduction(totalAtk)));
                 ObjectPools.GetParts("atkEffect").transform.position = hit.transform.position;
                 CurrentHp -= totalAtk - (int)DamageReduction(totalAtk);
+                controlAnim.SetTrigger("Hit");
             }
 
             Debug.Log(name + " " + "현재 Hp : " + CurrentHp + "데미지 : " + (totalAtk - (int)DamageReduction(totalAtk)));
@@ -126,11 +156,23 @@ public class Enemy : Character
     }
     protected void ShowDamage(int damage)
     {
-        GameObject temp = Instantiate(damageText, transform.GetChild(0));
+        GameObject temp = ObjectPools.GetParts("DamageText"); // Instantiate(damageText, transform.GetChild(0));
+        temp.transform.SetParent(transform.GetChild(0), false);
         temp.transform.localPosition = transform.localPosition - Vector3.up * 0.5f + (Vector3.forward) * 1.5f;
         temp.GetComponent<DamageTextConroller>().damage = damage;
     }
-
+    private void ReleaseText()
+    {
+        DamageTextConroller[] damageTextConrollers = transform.GetChild(0).GetComponentsInChildren<DamageTextConroller>();
+        foreach (DamageTextConroller temp in damageTextConrollers)
+        {
+            temp.transform.parent = null;
+        }
+    }
+    private void DeadEventOn()
+    {
+        deadEvent();
+    }
     // 아이템 드랍
     protected void OnDestroy()
     {

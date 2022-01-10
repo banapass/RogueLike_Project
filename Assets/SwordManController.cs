@@ -1,52 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class SwordManController : AiController
 {
     [SerializeField] private float atkRange;
-    bool isAttack;
+
+    [SerializeField] private BoxCollider weaponCol;
 
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
+
+        enemy = GetComponent<Enemy>();
         atkRange = 2.2f;
     }
     // Update is called once per frame
     void Update()
     {
-        //CheckAnim();
-        Ai();
+        if (!enemy.isDie)
+        {
+            Ai();
+        }
+
     }
     protected override void Attack()
     {
-        if (!isAttack)
+        if (!isAttack && !isHit)
         {
-            int randomNum = Random.Range(1, 4);
+            int randomNum = UnityEngine.Random.Range(1, 4);
             isAttack = true;
 
             nav.SetDestination(transform.position);
             anim.SetBool("isRun", false);
-
-            switch (randomNum)
-            {
-                case 1:
-                    anim.SetTrigger("Attack" + randomNum);
-                    break;
-                case 2:
-                    anim.SetTrigger("Attack" + randomNum);
-                    break;
-                case 3:
-                    anim.SetTrigger("Attack" + randomNum);
-                    break;
-            }
+            anim.SetTrigger("Attack" + randomNum);
 
         }
 
     }
 
-
+    private void ResetTriggers(int count)
+    {
+        for (int i = 1; i < count; i++)
+        {
+            anim.ResetTrigger("Attack" + i);
+        }
+    }
     protected override void ChasePlayer()
     {
         anim.SetBool("isRun", true);
@@ -63,6 +64,7 @@ public class SwordManController : AiController
             ChasePlayer();
 
     }
+
     private void CheckAnim()
     {
         if (isAttack)
@@ -76,6 +78,30 @@ public class SwordManController : AiController
             }
         }
     }
-
+    private void SetAttack(int boolCheck)
+    {
+        bool temp = Convert.ToBoolean(boolCheck);
+        if (temp)
+        {
+            weaponCol.enabled = true;
+        }
+        else
+        {
+            weaponCol.enabled = false;
+        }
+    }
+    private void SetIsHit(int boolCheck)
+    {
+        bool temp = Convert.ToBoolean(boolCheck);
+        if (temp)
+        {
+            isHit = true;
+            ResetTriggers(4);
+        }
+        else
+        {
+            isHit = false;
+        }
+    }
 
 }

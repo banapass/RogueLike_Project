@@ -6,6 +6,13 @@ public class Portal : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        StageManager.RandomChoiceStage();
+        if (StageManager.instance.scenes.Count <= 0)
+        {
+            StageManager.LoadScene("EndingScene");
+        }
+        else
+        {
+            StageManager.RandomChoiceStage();
+        }
     }
 }

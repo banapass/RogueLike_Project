@@ -38,7 +38,7 @@ public class Player : Character
     {
         maxHp = currentHp;
         deadEvent += SetDeadEvent;
-        EquipWeapon = weaponPoint.GetChild(0).GetComponent<Weapon>();
+        //EquipWeapon = weaponPoint.GetChild(0).GetComponent<Weapon>();
         playerAnim = GetComponent<Animator>();
         playerController = GetComponent<PlayerController>();
 
@@ -91,12 +91,17 @@ public class Player : Character
 
     protected override void SetDeadEvent()
     {
+        deadEvent = null;
         base.SetDeadEvent();
 
     }
     public override void OnHit(Character character, Transform hit)
     {
-        //base.OnHit(character);
+        float totalAtk = character.atk * (character.damege + character.increaceDmg);
+
+        CurrentHp -= totalAtk - (int)DamageReduction(totalAtk);
+        Debug.Log(CurrentHp + " " + totalAtk);
+        ObjectPools.GetParts("EnemyAtkEffect").transform.position = hit.transform.position;
 
     }
 }
