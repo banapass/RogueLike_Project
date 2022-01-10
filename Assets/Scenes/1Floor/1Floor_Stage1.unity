@@ -10591,6 +10591,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4448720114679633652, guid: 2f56fbe6a21ff95499494d8891ee21b1, type: 3}
+      propertyPath: atk
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448720114679633652, guid: 2f56fbe6a21ff95499494d8891ee21b1, type: 3}
       propertyPath: def
       value: 500
       objectReference: {fileID: 0}

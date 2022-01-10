@@ -30,6 +30,7 @@ public class Arrow : MonoBehaviour
         if (other.tag == "Player" && !other.GetComponent<PlayerController>().isDodge)
         {
             Player target = other.GetComponent<Player>();
+            target.OnHit(enemy, transform.GetChild(0).transform);
             ObjectPools.ReturnParts(this.gameObject, "arrow");
         }
     }

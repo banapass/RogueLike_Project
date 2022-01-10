@@ -19,6 +19,7 @@ public class EnemyMonsterAnimEvent : MonoBehaviour
     {
         GameObject temp = ObjectPools.GetParts("arrow");
         Rigidbody rigid = temp.GetComponent<Rigidbody>();
+        temp.GetComponent<Arrow>().enemy = GetComponent<Enemy>();
         rigid.velocity = ((playerTf.position + Vector3.up) - fireTf.position).normalized * arrowSpeed;
         temp.transform.position = fireTf.position;
         temp.transform.forward = rigid.velocity;

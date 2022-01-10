@@ -67,12 +67,8 @@ public class Enemy : Character
     }
     private void OnDisable()
     {
-        Debug.Log(gameObject.name + " OnDisable ");
-
-
-        Instantiate(coin, transform.position, Quaternion.identity);
-
-
+        // Debug.Log(gameObject.name + " OnDisable ");
+        // Instantiate(coin, transform.position, Quaternion.identity);
     }
     protected override void SetDeadEvent()
     {
