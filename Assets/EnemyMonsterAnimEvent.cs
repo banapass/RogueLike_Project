@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestAnimation : MonoBehaviour
+public class EnemyMonsterAnimEvent : MonoBehaviour
 {
     Transform playerTf;
     [SerializeField] private float arrowSpeed;

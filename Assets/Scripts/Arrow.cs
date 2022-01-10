@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-
+    public Enemy enemy;
     private void OnEnable()
     {
         StartCoroutine(ReturnArrow());

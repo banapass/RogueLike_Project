@@ -49,7 +49,7 @@ public class Enemy : Character
     protected void Start()
     {
         controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        targetTf = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        targetTf = GameObject.FindGameObjectWithTag("LookCamera").transform;
         hpBar = transform.GetChild(0).GetChild(0).GetComponent<Image>();
         canvas = transform.GetChild(0).GetComponent<Canvas>();
         controlAnim = GetComponent<AiController>().anim;

@@ -3817,6 +3817,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordsMan (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7294832582837077208, guid: ac52d1b8d77228d4e81f3193fadf16ed, type: 3}
+      propertyPath: atk
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294832582837077208, guid: ac52d1b8d77228d4e81f3193fadf16ed, type: 3}
+      propertyPath: def
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294832582837077208, guid: ac52d1b8d77228d4e81f3193fadf16ed, type: 3}
+      propertyPath: maxHp
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294832582837077208, guid: ac52d1b8d77228d4e81f3193fadf16ed, type: 3}
+      propertyPath: currentHp
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac52d1b8d77228d4e81f3193fadf16ed, type: 3}
 --- !u!4 &402174252 stripped
@@ -6207,6 +6223,22 @@ PrefabInstance:
     - target: {fileID: 6473216419815975199, guid: ac52d1b8d77228d4e81f3193fadf16ed, type: 3}
       propertyPath: m_Name
       value: SwordsMan
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294832582837077208, guid: ac52d1b8d77228d4e81f3193fadf16ed, type: 3}
+      propertyPath: atk
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294832582837077208, guid: ac52d1b8d77228d4e81f3193fadf16ed, type: 3}
+      propertyPath: def
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294832582837077208, guid: ac52d1b8d77228d4e81f3193fadf16ed, type: 3}
+      propertyPath: maxHp
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294832582837077208, guid: ac52d1b8d77228d4e81f3193fadf16ed, type: 3}
+      propertyPath: currentHp
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac52d1b8d77228d4e81f3193fadf16ed, type: 3}
@@ -22128,6 +22160,22 @@ PrefabInstance:
     - target: {fileID: 6473216419815975199, guid: ac52d1b8d77228d4e81f3193fadf16ed, type: 3}
       propertyPath: m_Name
       value: SwordsMan (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294832582837077208, guid: ac52d1b8d77228d4e81f3193fadf16ed, type: 3}
+      propertyPath: atk
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294832582837077208, guid: ac52d1b8d77228d4e81f3193fadf16ed, type: 3}
+      propertyPath: def
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294832582837077208, guid: ac52d1b8d77228d4e81f3193fadf16ed, type: 3}
+      propertyPath: maxHp
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294832582837077208, guid: ac52d1b8d77228d4e81f3193fadf16ed, type: 3}
+      propertyPath: currentHp
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac52d1b8d77228d4e81f3193fadf16ed, type: 3}

@@ -13,11 +13,8 @@ public class DamageTextConroller : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        Debug.Log("Test");
-
         textColor = targetText.color;
         targetText.text = damage.ToString();
-        //  StartCoroutine(TakeDamageAction());
 
 
     }
@@ -27,10 +24,7 @@ public class DamageTextConroller : MonoBehaviour
         StartCoroutine(TakeDamageAction());
 
     }
-    private void OnDisable()
-    {
-        //ObjectPools.ReturnParts(this.gameObject, "DamageText");
-    }
+
 
     private IEnumerator TakeDamageAction()
     {
