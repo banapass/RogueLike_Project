@@ -5,6 +5,7 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] Player player;
     [SerializeField] Animator playerAnim;
     [SerializeField] Transform cameraArm;
     [SerializeField] Transform characterPos;
@@ -17,7 +18,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GetComponent<Player>();
         playerAnim = characterPos.gameObject.GetComponent<Animator>();
+        cameraArm = GameObject.FindGameObjectWithTag("MainCamera").transform;
         // StartCoroutine(CheckCo());
     }
 
@@ -25,9 +28,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        Dodge();
-        Attack();
+        if (!player.isDie)
+        {
+            Move();
+            Dodge();
+            Attack();
+        }
 
 
         // if (Input.GetMouseButtonDown(0))

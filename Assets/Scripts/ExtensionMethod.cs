@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class ExtensionMethod
 {
@@ -61,6 +62,14 @@ public static class ExtensionMethod
         int temp = value.IndexOf("(Clone)");
         string strTemp = value.Substring(0, temp);
         return strTemp;
+    }
+    public static bool CheckScene(this Scene value, string findSceneName)
+    {
+        if (SceneManager.GetActiveScene().name.IndexOf(findSceneName) == -1)
+        {
+            return false;
+        }
+        return true;
     }
 
 }

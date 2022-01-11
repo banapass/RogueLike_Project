@@ -10,6 +10,8 @@ TagManager:
   - Gate
   - StartPoint
   - LookCamera
+  - FollowCam
+  - Test
   layers:
   - Default
   - TransparentFX

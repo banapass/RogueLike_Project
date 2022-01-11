@@ -15,6 +15,7 @@ public class Character : MonoBehaviour
     public float increaceDmg;
 
     public Action deadEvent;
+    public bool isDie;
 
     virtual public float CurrentHp
     {

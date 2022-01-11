@@ -13,8 +13,6 @@ public class SwordManController : AiController
     protected override void Awake()
     {
         base.Awake();
-
-        enemy = GetComponent<Enemy>();
         atkRange = 2.2f;
     }
     // Update is called once per frame

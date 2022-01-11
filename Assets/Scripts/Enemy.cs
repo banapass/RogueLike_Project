@@ -19,7 +19,6 @@ public class Enemy : Character
 
     protected bool isAttack;
     public bool isHit;
-    public bool isDie;
     bool isCheck = false;
 
     public override float CurrentHp
@@ -32,8 +31,6 @@ public class Enemy : Character
             {
                 isDie = true;
                 controlAnim.SetTrigger("Die");
-                //controlAnim.ResetTrigger("Hit");
-
                 currentHp = 0;
             }
         }

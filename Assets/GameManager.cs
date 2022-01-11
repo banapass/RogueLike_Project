@@ -26,31 +26,49 @@ public class GameManager : SingleTon<GameManager>
     {
         targetObj = GameObject.FindGameObjectWithTag("Gate");
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if (SceneManager.GetActiveScene().CheckScene("Stage"))
+        {
+            CursorOff();
+        }
+        else
+        {
+            CursorOn();
+        }
     }
 
     // 적이 스테이지에 남아있는지 체크
     private void CheckEnemyLength()
     {
-        if (enemies.Length <= 0)
+        try
         {
-            targetObj.transform.GetChild(0).gameObject.SetActive(true);
+            if (enemies.Length <= 0)
+            {
+                targetObj.transform.GetChild(0).gameObject.SetActive(true);
+            }
+            else
+            {
+                enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            }
         }
-        else
+        catch
         {
-            enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            Debug.Log("NULL");
         }
     }
 
     private void CursorOnOff()
     {
-        if (Input.GetKey(KeyCode.LeftAlt))
+        if (SceneManager.GetActiveScene().CheckScene("Stage"))
         {
-            CursorOn();
-        }
-        else
-        {
-            CursorOff();
 
+            if (Input.GetKey(KeyCode.LeftAlt))
+            {
+                CursorOn();
+            }
+            else
+            {
+                CursorOff();
+            }
         }
     }
     private void CursorOn()

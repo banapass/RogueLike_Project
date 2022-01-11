@@ -24,14 +24,42 @@ public class StageManager : SingleTon<StageManager>
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        try
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
+        }
+        catch
+        {
+            Debug.Log("NULL");
+        }
         //gridList = gridBase.GetComponentsInChildren<Button>();
         GetAllScene();
         //RandomChoiceStage();
         SetGrid();
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += StageCheck;
 
+    }
+    private void OnDisable()
+    {
+
+        SceneManager.sceneLoaded -= StageCheck;
+    }
+    private void StageCheck(Scene scene, LoadSceneMode mode)
+    {
+        if (SceneManager.GetActiveScene().name.IndexOf("Stage") == -1)
+        {
+            gridBase.gameObject.SetActive(false);
+        }
+        else
+        {
+            gridBase.gameObject.SetActive(true);
+        }
+    }
     private void GetAllScene()
     {
         foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
@@ -64,6 +92,7 @@ public class StageManager : SingleTon<StageManager>
         AsyncOperation operation = SceneManager.LoadSceneAsync(nextScene);
         operation.allowSceneActivation = false;
         float delay = 0;
+
         while (!operation.isDone)
         {
             progressBar.fillAmount = operation.progress;
@@ -72,8 +101,10 @@ public class StageManager : SingleTon<StageManager>
             if (operation.progress == 0.9f)
             {
                 delay += Time.unscaledDeltaTime;
+
                 progressBar.fillAmount = Mathf.Lerp(0.9f, 1, delay);
                 progressText.text = (progressBar.fillAmount * 100) + "%";
+
                 if (progressBar.fillAmount >= 1f)
                 {
                     operation.allowSceneActivation = true;
@@ -87,16 +118,30 @@ public class StageManager : SingleTon<StageManager>
     }
     private void SetGrid()
     {
-        for (int i = 0; i < createCount; i++)
+        if (SceneManager.GetActiveScene().name.IndexOf("Stage") != -1)
         {
-            int randomNum = Random.Range(0, gridList.Length);
-            if (gridList[randomNum].gameObject.activeSelf == false)
-                gridList[randomNum].gameObject.SetActive(true);
-            else
-                i--;
+            for (int i = 0; i < createCount; i++)
+            {
+                int randomNum = Random.Range(0, gridList.Length);
+                if (gridList[randomNum].gameObject.activeSelf == false)
+                    gridList[randomNum].gameObject.SetActive(true);
+                else
+                    i--;
+            }
         }
     }
-
+    public void DisableGrid()
+    {
+        for (int i = 0; i < gridList.Length; i++)
+        {
+            if (gridList[i].gameObject.activeSelf == true)
+            {
+                gridList[i].gameObject.SetActive(false);
+            }
+        }
+    }
+    #region 스테이지 클리어 보상
+    // 공격력 상승
     public void AtkUp()
     {
         player.increaceDmg += atkIncrease;
@@ -115,7 +160,6 @@ public class StageManager : SingleTon<StageManager>
     // 최대체력 50% 만큼 회복
     public void Healing()
     {
-
         player.CurrentHp += player.maxHp * 0.5f;
     }
     // 공격속도 20% 상승
@@ -127,4 +171,9 @@ public class StageManager : SingleTon<StageManager>
     {
         player.criticalChance += 10;
     }
+    public void SelectPanelOff()
+    {
+        gameObject.SetActive(false);
+    }
+    #endregion
 }

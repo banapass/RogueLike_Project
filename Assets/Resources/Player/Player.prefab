@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 4448720113932379935}
   m_Layer: 0
   m_Name: FollowCam
-  m_TagString: Untagged
+  m_TagString: FollowCam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -990,7 +990,7 @@ GameObject:
   - component: {fileID: 4448720114129443936}
   - component: {fileID: 4448720114679633652}
   m_Layer: 6
-  m_Name: Character_Hero_Knight_Male
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1089,6 +1089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db232a51dae78ef4cb4527c629958341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   playerAnim: {fileID: 4448720114129443950}
   cameraArm: {fileID: 0}
   characterPos: {fileID: 4448720114129443948}
@@ -1110,13 +1111,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc100531cfe8e14389758a8f7929944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
-  currentHp: 50
-  atk: 0
-  def: 0
-  criticalChance: 30
+  maxHp: 500
+  currentHp: 500
+  atk: 200
+  def: 100
+  criticalChance: 0
   damege: 1
   increaceDmg: 0
+  isDie: 0
   inventory: []
   coin: 0
   weaponPoint: {fileID: 4448720115377159798}

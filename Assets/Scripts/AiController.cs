@@ -22,10 +22,15 @@ public class AiController : MonoBehaviour
 
     virtual protected void Awake()
     {
-        targetTf = GameObject.FindGameObjectWithTag("Player").transform;
+
         enemy = GetComponent<Enemy>();
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
+
+    }
+    protected void Start()
+    {
+        targetTf = GameObject.FindGameObjectWithTag("Player").transform;
     }
     virtual protected void ChasePlayer() { }
     virtual protected void Attack() { }

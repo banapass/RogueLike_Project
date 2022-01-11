@@ -29,6 +29,7 @@ public class CameraMovement : MonoBehaviour
         dirNormalized = cam.localPosition.normalized;
         finalDistance = cam.localPosition.magnitude;
         currentDistnace = finalDistance;
+        targetTf = GameObject.FindGameObjectWithTag("FollowCam").transform;
     }
 
     // Update is called once per frame

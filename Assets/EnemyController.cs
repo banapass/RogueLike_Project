@@ -10,6 +10,7 @@ public class EnemyController : AiController
     {
         base.Awake();
     }
+
     // Update is called once per frame
     void Update()
     {

@@ -16,6 +16,19 @@ public class Player : Character
     //public int criticalChance;
     public float atkSpeed = 2;
 
+    public override float CurrentHp
+    {
+        get { return currentHp; }
+        set
+        {
+            currentHp = value;
+            if (currentHp <= 0)
+            {
+                isDie = true;
+                deadEvent();
+            }
+        }
+    }
     public Weapon EquipWeapon
     {
         get { return equipWeapon; }
@@ -92,7 +105,7 @@ public class Player : Character
     protected override void SetDeadEvent()
     {
         deadEvent = null;
-        base.SetDeadEvent();
+        playerAnim.SetTrigger("Die");
 
     }
     public override void OnHit(Character character, Transform hit)

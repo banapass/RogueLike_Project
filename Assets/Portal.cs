@@ -8,11 +8,18 @@ public class Portal : MonoBehaviour
     {
         if (StageManager.instance.scenes.Count <= 0)
         {
-            StageManager.LoadScene("EndingScene");
+            StageManager.LoadScene("Title");
         }
         else
         {
+            SaveAndLoad.instance.Save();
             StageManager.RandomChoiceStage();
         }
+
     }
+    private void OnTriggerStay(Collider other)
+    {
+
+    }
+
 }
