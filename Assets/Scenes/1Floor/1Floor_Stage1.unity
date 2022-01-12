@@ -1528,6 +1528,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  target: {fileID: 0}
+  targetTag: 
 --- !u!4 &168792983
 Transform:
   m_ObjectHideFlags: 0
@@ -21348,66 +21350,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.62291527, y: 2.0967622, z: 0.6199951}
   m_Center: {x: -0.0000009536743, y: 1.0483811, z: -0.0000009536743}
---- !u!1 &2035504016
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2035504018}
-  - component: {fileID: 2035504017}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Test
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2035504017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035504016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bc100531cfe8e14389758a8f7929944, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 0
-  currentHp: 0
-  atk: 0
-  def: 0
-  criticalChance: 0
-  damege: 1
-  increaceDmg: 0
-  isDie: 0
-  inventory: []
-  coin: 0
-  weaponPoint: {fileID: 0}
-  currentWeapon: {fileID: 0}
-  playerController: {fileID: 0}
-  equipWeapon: {fileID: 0}
-  weaponTest: {fileID: 0}
-  playerAnim: {fileID: 0}
-  atkSpeed: 2
---- !u!4 &2035504018
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035504016}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 435.99973, y: 314.00558, z: -326.11972}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 19
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2042491114
 GameObject:
   m_ObjectHideFlags: 0

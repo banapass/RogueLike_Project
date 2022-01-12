@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
+    bool isClick;
     private void OnTriggerEnter(Collider other)
     {
         if (StageManager.instance.scenes.Count <= 0)
@@ -12,14 +13,14 @@ public class Portal : MonoBehaviour
         }
         else
         {
-            SaveAndLoad.instance.Save();
-            StageManager.RandomChoiceStage();
+            StageManager.instance.gridBase.gameObject.SetActive(true);
         }
-
     }
     private void OnTriggerStay(Collider other)
     {
 
+        // SaveAndLoad.instance.Save();
+        // StageManager.RandomChoiceStage();
     }
 
 }

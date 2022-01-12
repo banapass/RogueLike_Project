@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Character
+public class Player : Character, ISaveTarget
 {
 
     [SerializeField] protected List<Item> inventory;
@@ -15,6 +15,70 @@ public class Player : Character
     [SerializeField] private Animator playerAnim;
     //public int criticalChance;
     public float atkSpeed = 2;
+
+    public SaveData saveData;
+    public SaveData SavaDataProperty
+    {
+        get
+        {
+            SaveDataSetting();
+            return saveData;
+        }
+        set
+        {
+            saveData = value;
+            PlayerSetting();
+        }
+    }
+
+    void PlayerSetting()
+    {
+        atkSpeed = saveData.atkSpeed;
+        atk = saveData.atk;
+        maxHp = saveData.maxHp;
+        currentHp = saveData.currentHp;
+        def = saveData.def;
+        damege = saveData.damage;
+        increaceDmg = saveData.increaceAtk;
+    }
+    public void SaveDataSetting()
+    {
+        saveData.atkSpeed = atkSpeed;
+        saveData.atk = atk;
+        saveData.maxHp = maxHp;
+        saveData.currentHp = currentHp;
+        saveData.def = def;
+        saveData.damage = damege;
+        saveData.increaceAtk = increaceDmg;
+    }
+
+
+    public float MaxHp
+    {
+        get { return maxHp; }
+        set { maxHp = value; }
+    }
+    public float Atk
+    {
+        get { return atk; }
+        set { atk = value; }
+    }
+    public float Damage
+    {
+        get { return damege; }
+        set { damege = value; }
+    }
+    public float IncreaceAtk
+    {
+        get { return increaceDmg; }
+        set { increaceDmg = value; }
+    }
+
+    public float AtkSpeed
+    {
+        get { return atkSpeed; }
+        set { atkSpeed = value; }
+    }
 
     public override float CurrentHp
     {
@@ -29,6 +93,7 @@ public class Player : Character
             }
         }
     }
+
     public Weapon EquipWeapon
     {
         get { return equipWeapon; }
@@ -47,9 +112,33 @@ public class Player : Character
         }
     }
 
+    public void Awake()
+    {
+
+        saveData = new SaveData();
+
+        if (System.IO.File.Exists(Application.dataPath + "/Save/" + "PlayerData.json"))
+        {
+            string loadData = System.IO.File.ReadAllText(Application.dataPath + "/Save/" + "PlayerData.json");
+            SavaDataProperty = JsonUtility.FromJson<SaveData>(loadData);
+        }
+        else
+        {
+            Debug.Log("디폴트");
+            saveData.maxHp = 500;
+            saveData.currentHp = 500;
+            saveData.damage = 1;
+            saveData.def = 100;
+            saveData.atk = 100;
+            saveData.increaceAtk = 0;
+            saveData.atkSpeed = 1;
+            System.IO.File.WriteAllText(Application.dataPath + "/Save/" + "PlayerData.json", JsonUtility.ToJson(saveData));
+        }
+
+    }
     protected void Start()
     {
-        maxHp = currentHp;
+
         deadEvent += SetDeadEvent;
         //EquipWeapon = weaponPoint.GetChild(0).GetComponent<Weapon>();
         playerAnim = GetComponent<Animator>();
@@ -110,11 +199,14 @@ public class Player : Character
     }
     public override void OnHit(Character character, Transform hit)
     {
-        float totalAtk = character.atk * (character.damege + character.increaceDmg);
+        if (!playerController.isDodge)
+        {
+            float totalAtk = character.atk * (character.damege + character.increaceDmg);
 
-        CurrentHp -= totalAtk - (int)DamageReduction(totalAtk);
-        Debug.Log(CurrentHp + " " + totalAtk);
-        ObjectPools.GetParts("EnemyAtkEffect").transform.position = hit.transform.position;
+            CurrentHp -= totalAtk - (int)DamageReduction(totalAtk);
+            Debug.Log(CurrentHp + " " + totalAtk);
+            ObjectPools.GetParts("EnemyAtkEffect").transform.position = hit.transform.position;
+        }
 
     }
 }

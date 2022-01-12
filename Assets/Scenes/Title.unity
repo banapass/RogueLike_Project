@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1626,8 +1626,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0cd55276b7854c4cb8be96a09d4a4bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   targetTag: Player
+  saveData_Directroy: 
+  saveFileName: PlayerData.json
 --- !u!4 &1128724645
 Transform:
   m_ObjectHideFlags: 0
@@ -2428,6 +2429,10 @@ PrefabInstance:
       propertyPath: gridBase
       value: 
       objectReference: {fileID: 1582908503}
+    - target: {fileID: 8987166814701326705, guid: eb9639e08a273904889232fe4dfbb29c, type: 3}
+      propertyPath: gridList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8987166814701326705, guid: eb9639e08a273904889232fe4dfbb29c, type: 3}
       propertyPath: gridList.Array.data[0]
       value: 

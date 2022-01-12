@@ -10,9 +10,9 @@ public class StageManager : SingleTon<StageManager>
 {
 
     [SerializeField] Player player;
-    [SerializeField] Transform gridBase;
+    public Transform gridBase;
     [SerializeField] GameObject target;
-    [SerializeField] Button[] gridList;
+    [SerializeField] List<Button> gridList;
     public List<string> scenes = new List<string>();
     [SerializeField] List<string> stages = new List<string>();
     [SerializeField] float atkIncrease;
@@ -33,10 +33,11 @@ public class StageManager : SingleTon<StageManager>
         {
             Debug.Log("NULL");
         }
-        //gridList = gridBase.GetComponentsInChildren<Button>();
+
         GetAllScene();
+        DefaultSetting();
         //RandomChoiceStage();
-        SetGrid();
+
     }
 
     private void OnEnable()
@@ -46,8 +47,8 @@ public class StageManager : SingleTon<StageManager>
     }
     private void OnDisable()
     {
-
         SceneManager.sceneLoaded -= StageCheck;
+
     }
     private void StageCheck(Scene scene, LoadSceneMode mode)
     {
@@ -96,14 +97,14 @@ public class StageManager : SingleTon<StageManager>
         while (!operation.isDone)
         {
             progressBar.fillAmount = operation.progress;
-            progressText.text = (progressBar.fillAmount * 100) + "%";
+
 
             if (operation.progress == 0.9f)
             {
                 delay += Time.unscaledDeltaTime;
 
                 progressBar.fillAmount = Mathf.Lerp(0.9f, 1, delay);
-                progressText.text = (progressBar.fillAmount * 100) + "%";
+                progressText.text = (int)(progressBar.fillAmount * 100f) + "%";
 
                 if (progressBar.fillAmount >= 1f)
                 {
@@ -116,23 +117,32 @@ public class StageManager : SingleTon<StageManager>
         }
         yield return null;
     }
-    private void SetGrid()
+    private void DefaultSetting()
     {
+        for (int i = 0; i < gridBase.childCount; i++)
+        {
+            gridList.Add(gridBase.GetChild(i).GetComponent<Button>());
+        }
+    }
+    public void SetGrid()
+    {
+
         if (SceneManager.GetActiveScene().name.IndexOf("Stage") != -1)
         {
             for (int i = 0; i < createCount; i++)
             {
-                int randomNum = Random.Range(0, gridList.Length);
+                int randomNum = Random.Range(0, gridList.Count);
                 if (gridList[randomNum].gameObject.activeSelf == false)
                     gridList[randomNum].gameObject.SetActive(true);
                 else
                     i--;
             }
         }
+        Debug.Log("GridEnd");
     }
     public void DisableGrid()
     {
-        for (int i = 0; i < gridList.Length; i++)
+        for (int i = 0; i < gridList.Count; i++)
         {
             if (gridList[i].gameObject.activeSelf == true)
             {

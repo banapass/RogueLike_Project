@@ -115,7 +115,7 @@ public class Enemy : Character
     public override void OnHit(Character character, Transform hit)
     {
         float totalAtk = character.atk * (character.damege + character.increaceDmg);
-        if (!isHit && !isDie)
+        if (!isHit && !isDie && !controller.isDodge)
         {
             if (Critical(character))
             {

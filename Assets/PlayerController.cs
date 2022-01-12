@@ -123,9 +123,12 @@ public class PlayerController : MonoBehaviour
     }
     public void SetAttack(int boolCheck)
     {
+
         bool temp = Convert.ToBoolean(boolCheck);
         isAttack = temp;
         weaponCol.enabled = temp;
+
+
     }
     #endregion
 
@@ -137,17 +140,20 @@ public class PlayerController : MonoBehaviour
         {
             isDodge = true;
             SetAttack(0);
+            playerAnim.ResetTrigger("Attack");
             playerAnim.SetTrigger("Dodge");
-            // this.tag = "Invincibility";
 
         }
-        if (EndAnim("Dodge", 0.7f))
+        if (isDodge)
         {
-            isDodge = false;
-            // this.tag = "Player";
             SetAttack(0);
         }
 
+    }
+
+    private void DodgeOff()
+    {
+        isDodge = false;
     }
     private IEnumerator CheckCo()
     {

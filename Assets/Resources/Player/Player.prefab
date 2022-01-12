@@ -1113,8 +1113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 500
   currentHp: 500
-  atk: 200
-  def: 100
+  atk: 100
+  def: 50
   criticalChance: 0
   damege: 1
   increaceDmg: 0
@@ -1128,6 +1128,14 @@ MonoBehaviour:
   weaponTest: {fileID: 0}
   playerAnim: {fileID: 0}
   atkSpeed: 1
+  saveData:
+    currentHp: 0
+    maxHp: 0
+    atk: 0
+    damage: 0
+    increaceAtk: 0
+    def: 0
+    atkSpeed: 0
 --- !u!1 &4448720114132780982
 GameObject:
   m_ObjectHideFlags: 0

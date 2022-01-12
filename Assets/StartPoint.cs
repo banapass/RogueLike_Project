@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class StartPoint : MonoBehaviour
 {
+    Scene scene;
+    LoadSceneMode mode;
     private void Awake()
     {
         SetPlayerPos();
     }
+    private void Start()
+    {
 
+    }
     private void SetPlayerPos()
     {
         if (GameObject.FindGameObjectWithTag("Player") != null)
@@ -25,5 +30,6 @@ public class StartPoint : MonoBehaviour
                 Instantiate(temps[i], transform.localPosition, transform.localRotation);
             }
         }
+        SaveAndLoad.instance.Load(scene, mode);
     }
 }

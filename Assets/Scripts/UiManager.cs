@@ -52,7 +52,7 @@ public class UiManager : SingleTon<UiManager>
             }
             catch
             {
-                Debug.Log("NULL");
+                //  Debug.Log("NULL");
             }
 
             yield return null;
