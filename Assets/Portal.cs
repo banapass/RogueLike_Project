@@ -13,14 +13,14 @@ public class Portal : MonoBehaviour
         }
         else
         {
-            StageManager.instance.gridBase.gameObject.SetActive(true);
+            StageManager.instance.SetGrid();
+
         }
     }
     private void OnTriggerStay(Collider other)
     {
 
-        // SaveAndLoad.instance.Save();
-        // StageManager.RandomChoiceStage();
+
     }
 
 }

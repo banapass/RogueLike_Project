@@ -31,26 +31,7 @@ public class Player : Character, ISaveTarget
         }
     }
 
-    void PlayerSetting()
-    {
-        atkSpeed = saveData.atkSpeed;
-        atk = saveData.atk;
-        maxHp = saveData.maxHp;
-        currentHp = saveData.currentHp;
-        def = saveData.def;
-        damege = saveData.damage;
-        increaceDmg = saveData.increaceAtk;
-    }
-    public void SaveDataSetting()
-    {
-        saveData.atkSpeed = atkSpeed;
-        saveData.atk = atk;
-        saveData.maxHp = maxHp;
-        saveData.currentHp = currentHp;
-        saveData.def = def;
-        saveData.damage = damege;
-        saveData.increaceAtk = increaceDmg;
-    }
+
 
 
     public float MaxHp
@@ -90,6 +71,11 @@ public class Player : Character, ISaveTarget
             {
                 isDie = true;
                 deadEvent();
+                currentHp = 0;
+            }
+            if (currentHp > maxHp)
+            {
+                currentHp = maxHp;
             }
         }
     }
@@ -132,6 +118,7 @@ public class Player : Character, ISaveTarget
             saveData.atk = 100;
             saveData.increaceAtk = 0;
             saveData.atkSpeed = 1;
+            saveData.criticalChance = 0;
             System.IO.File.WriteAllText(Application.dataPath + "/Save/" + "PlayerData.json", JsonUtility.ToJson(saveData));
         }
 
@@ -208,5 +195,25 @@ public class Player : Character, ISaveTarget
             ObjectPools.GetParts("EnemyAtkEffect").transform.position = hit.transform.position;
         }
 
+    }
+    void PlayerSetting()
+    {
+        atkSpeed = saveData.atkSpeed;
+        atk = saveData.atk;
+        maxHp = saveData.maxHp;
+        currentHp = saveData.currentHp;
+        def = saveData.def;
+        damege = saveData.damage;
+        increaceDmg = saveData.increaceAtk;
+    }
+    public void SaveDataSetting()
+    {
+        saveData.atkSpeed = atkSpeed;
+        saveData.atk = atk;
+        saveData.maxHp = maxHp;
+        saveData.currentHp = currentHp;
+        saveData.def = def;
+        saveData.damage = damege;
+        saveData.increaceAtk = increaceDmg;
     }
 }

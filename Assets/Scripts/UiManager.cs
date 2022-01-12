@@ -15,6 +15,8 @@ public class UiManager : SingleTon<UiManager>
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject option;
     [SerializeField] private TextMeshProUGUI hpText;
+    [SerializeField] private Stack<GameObject> menuStack;
+    public bool isMenuOpen;
 
     // Start is called before the first frame update
     void Start()
@@ -100,6 +102,10 @@ public class UiManager : SingleTon<UiManager>
     {
         if (targetCamera != null)
             targetCamera.sens = sensSlider.value * 10;
+    }
+    private void Menu()
+    {
+        isMenuOpen = !isMenuOpen;
     }
 
 }

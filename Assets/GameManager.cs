@@ -26,14 +26,7 @@ public class GameManager : SingleTon<GameManager>
     {
         targetObj = GameObject.FindGameObjectWithTag("Gate");
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if (SceneManager.GetActiveScene().CheckScene("Stage"))
-        {
-            CursorOff();
-        }
-        else
-        {
-            CursorOn();
-        }
+        CursorOnOff();
     }
 
     // 적이 스테이지에 남아있는지 체크
@@ -61,7 +54,8 @@ public class GameManager : SingleTon<GameManager>
         if (SceneManager.GetActiveScene().CheckScene("Stage"))
         {
 
-            if (Input.GetKey(KeyCode.LeftAlt))
+
+            if (Input.GetKey(KeyCode.LeftAlt) || StageManager.instance.isOpen)
             {
                 CursorOn();
             }
@@ -69,14 +63,18 @@ public class GameManager : SingleTon<GameManager>
             {
                 CursorOff();
             }
+
+
         }
+
+
     }
-    private void CursorOn()
+    public void CursorOn()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-    private void CursorOff()
+    public void CursorOff()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

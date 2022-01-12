@@ -16,6 +16,7 @@ public struct SaveData : ISaveTarget
     public float increaceAtk;
     public float def;
     public float atkSpeed;
+    public float criticalChance;
 
 
     #region 프로퍼티

@@ -151,8 +151,8 @@ public class Enemy : Character
     {
         GameObject temp = ObjectPools.GetParts("DamageText"); // Instantiate(damageText, transform.GetChild(0));
         temp.transform.SetParent(transform.GetChild(0), false);
-        temp.transform.localPosition = transform.localPosition - Vector3.up * 0.5f + (Vector3.forward) * 1.5f;
-        temp.GetComponent<DamageTextConroller>().damage = damage;
+        temp.transform.position = transform.position + (Vector3.up * 2);
+        temp.GetComponent<DamageTextConroller>().targetText.text = damage.ToString();
     }
     private void ReleaseText()
     {

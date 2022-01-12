@@ -83,7 +83,7 @@ public class ObjectPools : SingleTon<ObjectPools>
     public static void ReturnParts(GameObject parts, string partsName)
     {
         parts.SetActive(false);
-        parts.transform.SetParent(instance.transform);
+        parts.transform.SetParent(instance.transform, false);
         instance.poolingDic[partsName].pooling.Enqueue(parts);
     }
     private GameObject SearchParts(string partsName)

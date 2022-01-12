@@ -6,25 +6,27 @@ public class DamageTextConroller : MonoBehaviour
 {
     [SerializeField] float textSpeed;
     [SerializeField] float alphaSpeed;
-    private TextMeshProUGUI targetText;
+    public TextMeshProUGUI targetText;
     private IEnumerator takeDamageAction;
     public int damage;
     Color textColor;
     // Start is called before the first frame update
     private void Start()
     {
-        textColor = targetText.color;
-        targetText.text = damage.ToString();
 
+
+        //targetText.text = damage.ToString();
 
     }
     private void OnEnable()
     {
-        targetText = GetComponent<TextMeshProUGUI>();
+        if (targetText == null)
+            targetText = GetComponent<TextMeshProUGUI>();
+        if (textColor == null)
+            textColor = targetText.color;
         StartCoroutine(TakeDamageAction());
 
     }
-
 
     private IEnumerator TakeDamageAction()
     {

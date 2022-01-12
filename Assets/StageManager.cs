@@ -10,9 +10,9 @@ public class StageManager : SingleTon<StageManager>
 {
 
     [SerializeField] Player player;
-    public Transform gridBase;
     [SerializeField] GameObject target;
-    [SerializeField] List<Button> gridList;
+    public Transform gridBase;
+    public List<Button> gridList;
     public List<string> scenes = new List<string>();
     [SerializeField] List<string> stages = new List<string>();
     [SerializeField] float atkIncrease;
@@ -20,13 +20,14 @@ public class StageManager : SingleTon<StageManager>
     [SerializeField] int createCount;
     public static int stageCount;
     public static string nextScene;
-    bool isOpen;
+    public bool isOpen;
+    bool isSetComplete;
     // Start is called before the first frame update
     void Start()
     {
         try
         {
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
 
         }
         catch
@@ -39,7 +40,10 @@ public class StageManager : SingleTon<StageManager>
         //RandomChoiceStage();
 
     }
-
+    private void Update()
+    {
+        Debug.Log(isOpen);
+    }
     private void OnEnable()
     {
         SceneManager.sceneLoaded += StageCheck;
@@ -55,11 +59,16 @@ public class StageManager : SingleTon<StageManager>
         if (SceneManager.GetActiveScene().name.IndexOf("Stage") == -1)
         {
             gridBase.gameObject.SetActive(false);
+
         }
         else
         {
             gridBase.gameObject.SetActive(true);
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            isSetComplete = false;
+            isOpen = false;
         }
+        DisableGrid();
     }
     private void GetAllScene()
     {
@@ -127,8 +136,9 @@ public class StageManager : SingleTon<StageManager>
     public void SetGrid()
     {
 
-        if (SceneManager.GetActiveScene().name.IndexOf("Stage") != -1)
+        if (SceneManager.GetActiveScene().name.IndexOf("Stage") != -1 && !isOpen)
         {
+            gridBase.gameObject.SetActive(true);
             for (int i = 0; i < createCount; i++)
             {
                 int randomNum = Random.Range(0, gridList.Count);
@@ -137,8 +147,24 @@ public class StageManager : SingleTon<StageManager>
                 else
                     i--;
             }
+
         }
+
+        isOpen = true;
+        isSetComplete = true;
         Debug.Log("GridEnd");
+    }
+    private IEnumerator TimeScaleControl()
+    {
+        while (true)
+        {
+            Time.timeScale -= 0.01f;
+            if (Time.timeScale <= 0)
+            {
+                break;
+            }
+            yield return null;
+        }
     }
     public void DisableGrid()
     {
@@ -181,9 +207,12 @@ public class StageManager : SingleTon<StageManager>
     {
         player.criticalChance += 10;
     }
-    public void SelectPanelOff()
+    public void SelectPanelClick()
     {
-        gameObject.SetActive(false);
+
+        gridBase.gameObject.SetActive(false);
+        SaveAndLoad.instance.Save();
+        RandomChoiceStage();
     }
     #endregion
 }
