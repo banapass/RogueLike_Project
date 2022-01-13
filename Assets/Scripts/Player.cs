@@ -98,31 +98,7 @@ public class Player : Character, ISaveTarget
         }
     }
 
-    public void Awake()
-    {
 
-        saveData = new SaveData();
-
-        if (System.IO.File.Exists(Application.dataPath + "/Save/" + "PlayerData.json"))
-        {
-            string loadData = System.IO.File.ReadAllText(Application.dataPath + "/Save/" + "PlayerData.json");
-            SavaDataProperty = JsonUtility.FromJson<SaveData>(loadData);
-        }
-        else
-        {
-            Debug.Log("디폴트");
-            saveData.maxHp = 500;
-            saveData.currentHp = 500;
-            saveData.damage = 1;
-            saveData.def = 100;
-            saveData.atk = 100;
-            saveData.increaceAtk = 0;
-            saveData.atkSpeed = 1;
-            saveData.criticalChance = 0;
-            System.IO.File.WriteAllText(Application.dataPath + "/Save/" + "PlayerData.json", JsonUtility.ToJson(saveData));
-        }
-
-    }
     protected void Start()
     {
 
@@ -182,6 +158,8 @@ public class Player : Character, ISaveTarget
     {
         deadEvent = null;
         playerAnim.SetTrigger("Die");
+        UiManager.instance.StackClear();
+        UiManager.instance.StartGameOverCo();
 
     }
     public override void OnHit(Character character, Transform hit)
@@ -205,6 +183,7 @@ public class Player : Character, ISaveTarget
         def = saveData.def;
         damege = saveData.damage;
         increaceDmg = saveData.increaceAtk;
+        criticalChance = saveData.criticalChance;
     }
     public void SaveDataSetting()
     {
@@ -215,5 +194,6 @@ public class Player : Character, ISaveTarget
         saveData.def = def;
         saveData.damage = damege;
         saveData.increaceAtk = increaceDmg;
+        saveData.criticalChance = criticalChance;
     }
 }

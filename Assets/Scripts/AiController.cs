@@ -14,6 +14,7 @@ public class AiController : MonoBehaviour
     [SerializeField] protected bool isMove;
     public bool isAttack;
     public bool isHit;
+    protected bool isSpawn;
 
     #region 적 Ai로직 정리
     // 근접 적 : 일반 공격 , 콤보 공격 , 거리두기, 쫒아가기
@@ -28,7 +29,7 @@ public class AiController : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
 
     }
-    protected void Start()
+    virtual protected void Start()
     {
         targetTf = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -45,6 +46,11 @@ public class AiController : MonoBehaviour
         {
             isAttack = false;
         }
+    }
+    protected void SetSpawn(int boolCheck)
+    {
+        bool temp = Convert.ToBoolean(boolCheck);
+        isSpawn = temp;
     }
 
 }

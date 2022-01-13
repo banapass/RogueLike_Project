@@ -13,6 +13,7 @@ public class Portal : MonoBehaviour
         }
         else
         {
+
             StageManager.instance.SetGrid();
 
         }

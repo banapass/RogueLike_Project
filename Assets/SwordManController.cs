@@ -15,10 +15,15 @@ public class SwordManController : AiController
         base.Awake();
         atkRange = 2.2f;
     }
+    protected override void Start()
+    {
+        base.Start();
+        anim.SetTrigger("Spawn");
+    }
     // Update is called once per frame
     void Update()
     {
-        if (!enemy.isDie)
+        if (!enemy.isDie && isSpawn)
         {
             Ai();
         }
@@ -101,5 +106,6 @@ public class SwordManController : AiController
             isHit = false;
         }
     }
+
 
 }

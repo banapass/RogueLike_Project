@@ -9,6 +9,12 @@ public class EnemyController : AiController
     protected override void Awake()
     {
         base.Awake();
+
+    }
+    protected override void Start()
+    {
+        base.Start();
+        anim.SetTrigger("Spawn");
     }
 
     // Update is called once per frame

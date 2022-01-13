@@ -14,21 +14,20 @@ public class UiManager : SingleTon<UiManager>
     [SerializeField] private Image hpbar;
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject option;
+    [SerializeField] private GameObject gameOver;
     [SerializeField] private TextMeshProUGUI hpText;
-    [SerializeField] private Stack<GameObject> menuStack;
+    [SerializeField] private Stack<GameObject> menuStack = new Stack<GameObject>();
     public bool isMenuOpen;
 
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
 
     // Update is called once per frame
     void Update()
     {
         State();
         MouseSens();
+        Menu();
+        //Debug.Log(menuStack.Count + "Bool Check : " + isMenuOpen);
     }
     private void OnEnable()
     {
@@ -85,16 +84,33 @@ public class UiManager : SingleTon<UiManager>
 
     public void Resume()
     {
-        menu.SetActive(false);
+        isMenuOpen = false;
+        Time.timeScale = 1;
+        menuStack.Pop().SetActive(false);
     }
     public void Title()
     {
         SceneManager.LoadScene("Title");
     }
-    public IEnumerator GameOverPanel()
+    public void StartGameOverCo()
     {
+        StartCoroutine(GameOverPanel());
+    }
+    private IEnumerator GameOverPanel()
+    {
+        gameOver.SetActive(true);
+        CanvasGroup gameOverGroup = gameOver.GetComponent<CanvasGroup>();
+        gameOverGroup.alpha = 0;
+
         while (true)
         {
+            gameOverGroup.alpha += Time.deltaTime * 2;
+            if (gameOverGroup.alpha >= 1)
+            {
+                gameOverGroup.blocksRaycasts = true;
+                break;
+            }
+            yield return null;
 
         }
     }
@@ -105,7 +121,41 @@ public class UiManager : SingleTon<UiManager>
     }
     private void Menu()
     {
-        isMenuOpen = !isMenuOpen;
+        if (Input.GetKeyDown(KeyCode.Escape) && !player.isDie)
+        {
+            if (menuStack.Count <= 0)
+            {
+                isMenuOpen = true;
+                Time.timeScale = 0;
+                menuStack.Push(menu);
+                menu.SetActive(true);
+            }
+            else
+            {
+
+                menuStack.Pop().SetActive(false);
+                if (menuStack.Count > 0)
+                    menuStack.Peek().SetActive(true);
+                if (menuStack.Count <= 0)
+                {
+                    isMenuOpen = false;
+                    Time.timeScale = 1;
+                }
+            }
+        }
+    }
+    public void Option()
+    {
+        menuStack.Peek().SetActive(false);
+        menuStack.Push(option);
+        option.SetActive(true);
+    }
+    public void StackClear()
+    {
+        for (int i = 0; i < menuStack.Count; i++)
+        {
+            menuStack.Pop().SetActive(false);
+        }
     }
 
 }

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class BossController : AiController
 {
-
-    bool isAttack;
+    [SerializeField] private GameObject[] enemys;
     // Update is called once per frame
     void Update()
     {
@@ -19,21 +18,12 @@ public class BossController : AiController
     {
         int randomNum = Random.Range(1, 4);
         isAttack = true;
-        if (isAttack)
-        {
-            switch (randomNum)
-            {
-                case 1:
-                    anim.SetTrigger("Attack" + randomNum);
-                    break;
-                case 2:
-                    anim.SetTrigger("Attack" + randomNum);
-                    break;
-                case 3:
-                    anim.SetTrigger("Attack" + randomNum);
-                    break;
-            }
-            isAttack = false;
-        }
+        anim.SetTrigger("Attack" + randomNum);
+    }
+    private void SummonEnemy()
+    {
+        Instantiate(enemys[Random.Range(0, enemys.Length)], transform.position + Vector3.left, transform.rotation);
+        Instantiate(enemys[Random.Range(0, enemys.Length)], transform.position + Vector3.right, transform.rotation);
+
     }
 }

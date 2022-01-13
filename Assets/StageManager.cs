@@ -209,9 +209,8 @@ public class StageManager : SingleTon<StageManager>
     }
     public void SelectPanelClick()
     {
-
-        gridBase.gameObject.SetActive(false);
         SaveAndLoad.instance.Save();
+        gridBase.gameObject.SetActive(false);
         RandomChoiceStage();
     }
     #endregion

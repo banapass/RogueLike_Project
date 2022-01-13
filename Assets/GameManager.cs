@@ -7,6 +7,7 @@ public class GameManager : SingleTon<GameManager>
 {
     [SerializeField] private GameObject targetObj;
     [SerializeField] private GameObject[] enemies;
+    [SerializeField] private Player player;
 
 
     void Update()
@@ -26,6 +27,7 @@ public class GameManager : SingleTon<GameManager>
     {
         targetObj = GameObject.FindGameObjectWithTag("Gate");
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         CursorOnOff();
     }
 
@@ -55,7 +57,9 @@ public class GameManager : SingleTon<GameManager>
         {
 
 
-            if (Input.GetKey(KeyCode.LeftAlt) || StageManager.instance.isOpen)
+            if (Input.GetKey(KeyCode.LeftAlt) ||
+                StageManager.instance.isOpen || UiManager.instance.isMenuOpen ||
+                player.isDie)
             {
                 CursorOn();
             }

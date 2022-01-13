@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using Newtonsoft.Json;
 
 [System.Serializable]
-public struct SaveData : ISaveTarget
+public class SaveData : ISaveTarget
 {
 
     public float currentHp;
@@ -16,7 +16,7 @@ public struct SaveData : ISaveTarget
     public float increaceAtk;
     public float def;
     public float atkSpeed;
-    public float criticalChance;
+    public int criticalChance;
 
 
     #region 프로퍼티
@@ -95,8 +95,8 @@ public class SaveAndLoad : SingleTon<SaveAndLoad>
 
         //saveData = target.SavaDataProperty;
         //File.WriteAllText(saveData_Directroy + saveFileName, JsonUtility.ToJson(saveData));
-
-        SetPlayer(ref saveData, target.SavaDataProperty);
+        File.WriteAllText(saveData_Directroy + saveFileName, JsonUtility.ToJson(target.SavaDataProperty));
+        //SetPlayer(saveData, target.SavaDataProperty);
 
         Debug.Log("Save");
     }
@@ -105,28 +105,36 @@ public class SaveAndLoad : SingleTon<SaveAndLoad>
         apply.Atk = target.Atk;
     }
 
-    private void SetPlayer(ref SaveData target, SaveData apply)
+    private void SetPlayer(SaveData target, SaveData apply)
     {
         target = apply;
+        Debug.Log("Target" + target.currentHp);
         File.WriteAllText(saveData_Directroy + saveFileName, JsonUtility.ToJson(target, true));
     }
-    public void Load(Scene scene, LoadSceneMode mode)
-    {
-        if (File.Exists(saveData_Directroy + saveFileName))
-        {
-            Debug.Log("Load");
-            LoadPlayerData();
-        }
-    }
+    // public void Load(Scene scene, LoadSceneMode mode)
+    // {
+    //     if (File.Exists(saveData_Directroy + saveFileName))
+    //     {
+    //         Debug.Log("Load");
+    //         LoadPlayerData();
+    //     }
+    // }
 
-    public void LoadPlayerData()
+    public void Load(Scene scene, LoadSceneMode mode)
     {
 
         Player target = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        string load = File.ReadAllText(saveData_Directroy + saveFileName);
-        SaveData playerData = JsonUtility.FromJson<SaveData>(load);
 
-        SetPlayer(target.SavaDataProperty, playerData);
+
+        if (File.Exists(saveData_Directroy + saveFileName))
+        {
+            string load = File.ReadAllText(saveData_Directroy + saveFileName);
+            target.SavaDataProperty = JsonUtility.FromJson<SaveData>(load);
+        }
+        else
+        {
+            File.WriteAllText(saveData_Directroy + saveFileName, JsonUtility.ToJson(target.SavaDataProperty, true));
+        }
 
         Debug.Log("로드 후 플레이어의 hp " + target.saveData.currentHp);
 
