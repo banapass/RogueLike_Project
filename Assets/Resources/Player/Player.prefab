@@ -1114,7 +1114,7 @@ MonoBehaviour:
   maxHp: 500
   currentHp: 500
   atk: 100
-  def: 50
+  def: 400
   criticalChance: 0
   damege: 1
   increaceDmg: 0
@@ -1136,6 +1136,7 @@ MonoBehaviour:
     increaceAtk: 0
     def: 0
     atkSpeed: 0
+    criticalChance: 0
 --- !u!1 &4448720114132780982
 GameObject:
   m_ObjectHideFlags: 0

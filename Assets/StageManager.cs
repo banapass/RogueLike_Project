@@ -25,15 +25,7 @@ public class StageManager : SingleTon<StageManager>
     // Start is called before the first frame update
     void Start()
     {
-        try
-        {
 
-
-        }
-        catch
-        {
-            Debug.Log("NULL");
-        }
 
         GetAllScene();
         DefaultSetting();
@@ -83,9 +75,25 @@ public class StageManager : SingleTon<StageManager>
     }
     public static void RandomChoiceStage()
     {
-        int randomNum = Random.Range(0, instance.scenes.Count);
-        LoadingScene(instance.scenes[randomNum]);
-        instance.scenes.Remove(instance.scenes[randomNum]);
+        int randomNum;
+        while (true)
+        {
+            randomNum = Random.Range(0, instance.scenes.Count);
+            if (instance.scenes[randomNum].IndexOf("Boss") == -1)
+            {
+                LoadingScene(instance.scenes[randomNum]);
+                instance.scenes.Remove(instance.scenes[randomNum]);
+                break;
+            }
+            else if (instance.scenes.Count == 1)
+            {
+                LoadingScene(instance.scenes[0]);
+                instance.scenes.Remove(instance.scenes[0]);
+                break;
+            }
+        }
+
+
         stageCount++;
     }
     public static void LoadScene(string sceneName)

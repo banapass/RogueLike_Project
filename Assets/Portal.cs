@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Portal : MonoBehaviour
 {
     bool isClick;
@@ -9,7 +9,9 @@ public class Portal : MonoBehaviour
     {
         if (StageManager.instance.scenes.Count <= 0)
         {
+
             StageManager.LoadScene("Title");
+
         }
         else
         {
@@ -17,11 +19,6 @@ public class Portal : MonoBehaviour
             StageManager.instance.SetGrid();
 
         }
-    }
-    private void OnTriggerStay(Collider other)
-    {
-
-
     }
 
 }

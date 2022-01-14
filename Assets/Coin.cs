@@ -17,7 +17,7 @@ public class Coin : MonoBehaviour
         Rigidbody rigid = GetComponent<Rigidbody>();
         transform.eulerAngles = new Vector3(0, Random.Range(0, 360), 0f);
         rigid.velocity = Vector3.up * 5;
-        rigid.AddForce(Vector3.forward * 100);
+        rigid.AddForce(transform.forward * 100);
     }
     private void OnCollisionEnter(Collision other)
     {

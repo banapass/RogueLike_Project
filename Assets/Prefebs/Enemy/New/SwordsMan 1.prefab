@@ -1931,27 +1931,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd0040117550ef4b8a1af651b6a2442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 2000
-  currentHp: 2000
-  atk: 50
-  def: 400
+  maxHp: 200
+  currentHp: 200
+  atk: 75
+  def: 100
   criticalChance: 0
   damege: 1
   increaceDmg: 0
-  coin: {fileID: 1942591113625154718, guid: 84a0c2d8f9ce8eb4f8939e8ef7da696f, type: 3}
+  isDie: 0
+  coin: {fileID: 0}
   targetTf: {fileID: 0}
   hpBar: {fileID: 0}
   canvas: {fileID: 0}
   controller: {fileID: 0}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 64
   damageText: {fileID: 2274243836118731394, guid: 9d26eb5ad9e156349ab1027b311e3d06, type: 3}
   damageDispalyTf: {fileID: 0}
   controlAnim: {fileID: 0}
   checkRange: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
   isHit: 0
-  isDie: 0
 --- !u!65 &8809826888793800057
 BoxCollider:
   m_ObjectHideFlags: 0

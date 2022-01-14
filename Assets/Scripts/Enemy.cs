@@ -11,11 +11,11 @@ public class Enemy : Character
     [SerializeField] protected Image hpBar;
     [SerializeField] protected Canvas canvas;
     [SerializeField] protected PlayerController controller;
-    [SerializeField] protected LayerMask layerMask;
     [SerializeField] protected GameObject damageText;
     [SerializeField] protected Transform damageDispalyTf;
     [SerializeField] protected Animator controlAnim;
     [SerializeField] protected float checkRange = 5f;
+    public LayerMask layerMask;
 
     protected bool isAttack;
     public bool isHit;
@@ -159,7 +159,7 @@ public class Enemy : Character
         DamageTextConroller[] damageTextConrollers = transform.GetChild(0).GetComponentsInChildren<DamageTextConroller>();
         foreach (DamageTextConroller temp in damageTextConrollers)
         {
-            temp.transform.parent = null;
+            temp.transform.SetParent(null, false);
         }
     }
     private void DeadEventOn()

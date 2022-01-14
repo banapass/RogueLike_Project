@@ -33,6 +33,10 @@ public class Arrow : MonoBehaviour
             target.OnHit(enemy, transform.GetChild(0).transform);
             ObjectPools.ReturnParts(this.gameObject, "arrow");
         }
+        else if (other.tag != "Player" && other.tag != "Enemy")
+        {
+            ObjectPools.ReturnParts(this.gameObject, name.RemoveClone());
+        }
     }
 
 }

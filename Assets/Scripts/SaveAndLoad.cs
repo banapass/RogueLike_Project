@@ -93,17 +93,13 @@ public class SaveAndLoad : SingleTon<SaveAndLoad>
         SaveData saveData = new SaveData();
         Player target = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
-        //saveData = target.SavaDataProperty;
-        //File.WriteAllText(saveData_Directroy + saveFileName, JsonUtility.ToJson(saveData));
         File.WriteAllText(saveData_Directroy + saveFileName, JsonUtility.ToJson(target.SavaDataProperty));
-        //SetPlayer(saveData, target.SavaDataProperty);
-
         Debug.Log("Save");
     }
-    private void SetPlayer<T>(T target, T apply) where T : ISaveTarget
-    {
-        apply.Atk = target.Atk;
-    }
+    // private void SetPlayer<T>(T target, T apply) where T : ISaveTarget
+    // {
+    //     apply.Atk = target.Atk;
+    // }
 
     private void SetPlayer(SaveData target, SaveData apply)
     {
@@ -111,14 +107,7 @@ public class SaveAndLoad : SingleTon<SaveAndLoad>
         Debug.Log("Target" + target.currentHp);
         File.WriteAllText(saveData_Directroy + saveFileName, JsonUtility.ToJson(target, true));
     }
-    // public void Load(Scene scene, LoadSceneMode mode)
-    // {
-    //     if (File.Exists(saveData_Directroy + saveFileName))
-    //     {
-    //         Debug.Log("Load");
-    //         LoadPlayerData();
-    //     }
-    // }
+
 
     public void Load(Scene scene, LoadSceneMode mode)
     {
