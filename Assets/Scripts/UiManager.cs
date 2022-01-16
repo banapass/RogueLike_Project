@@ -12,6 +12,7 @@ public class UiManager : SingleTon<UiManager>
     [SerializeField] private CameraMovement targetCamera;
     [SerializeField] private Slider sensSlider;
     [SerializeField] private Image hpbar;
+    [SerializeField] private Button[] btnTemp;
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject option;
     [SerializeField] private GameObject gameOver;
@@ -27,18 +28,19 @@ public class UiManager : SingleTon<UiManager>
         State();
         MouseSens();
         Menu();
-        //Debug.Log(menuStack.Count + "Bool Check : " + isMenuOpen);
+
     }
     private void OnEnable()
     {
-        SceneManager.sceneLoaded += SearchPlayer;
+        SceneManager.sceneLoaded += SetLoad;
     }
     private void OnDisable()
     {
-        SceneManager.sceneLoaded -= SearchPlayer;
+        SceneManager.sceneLoaded -= SetLoad;
     }
-    private void SearchPlayer(Scene scene, LoadSceneMode mode)
+    private void SetLoad(Scene scene, LoadSceneMode mode)
     {
+
         StartCoroutine(SearchPlayerCo());
     }
     private IEnumerator SearchPlayerCo()
@@ -72,6 +74,7 @@ public class UiManager : SingleTon<UiManager>
             hpbar.transform.parent.gameObject.SetActive(false);
         }
     }
+
     public void StartButton()
     {
         if (File.Exists(Application.dataPath + "/Save/PlayerData.json"))

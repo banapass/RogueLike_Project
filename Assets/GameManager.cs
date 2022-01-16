@@ -10,6 +10,18 @@ public class GameManager : SingleTon<GameManager>
     [SerializeField] private Player player;
 
 
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name.IndexOf("Stage") == -1)
+        {
+            CursorOn();
+        }
+        else
+        {
+            CursorOff();
+        }
+    }
+
     void Update()
     {
         CursorOnOff();
@@ -28,11 +40,8 @@ public class GameManager : SingleTon<GameManager>
         targetObj = GameObject.FindGameObjectWithTag("Gate");
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        CursorOnOff();
-        if (SceneManager.GetActiveScene().name.IndexOf("Stage") == -1)
-        {
-            CursorOn();
-        }
+
+
     }
 
     // 적이 스테이지에 남아있는지 체크
@@ -57,24 +66,18 @@ public class GameManager : SingleTon<GameManager>
 
     private void CursorOnOff()
     {
-        if (SceneManager.GetActiveScene().CheckScene("Stage"))
+
+
+        if (Input.GetKey(KeyCode.LeftAlt) || SceneManager.GetActiveScene().name.IndexOf("Stage") == -1 ||
+            StageManager.instance.isOpen || UiManager.instance.isMenuOpen ||
+            player.isDie)
         {
-
-
-            if (Input.GetKey(KeyCode.LeftAlt) ||
-                StageManager.instance.isOpen || UiManager.instance.isMenuOpen ||
-                player.isDie)
-            {
-                CursorOn();
-            }
-            else
-            {
-                CursorOff();
-            }
-
-
+            CursorOn();
         }
-
+        else
+        {
+            CursorOff();
+        }
 
     }
     public void CursorOn()

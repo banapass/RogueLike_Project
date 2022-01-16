@@ -65,11 +65,11 @@ public static class ExtensionMethod
     }
     public static bool CheckScene(this Scene value, string findSceneName)
     {
-        if (SceneManager.GetActiveScene().name.IndexOf(findSceneName) == -1)
+        if (SceneManager.GetActiveScene().name.IndexOf(findSceneName) != -1)
         {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
 }

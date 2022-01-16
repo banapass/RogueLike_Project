@@ -12,6 +12,7 @@ TagManager:
   - LookCamera
   - FollowCam
   - Test
+  - Title
   layers:
   - Default
   - TransparentFX
