@@ -27,7 +27,7 @@ public class StageManager : SingleTon<StageManager>
     {
 
 
-        GetAllScene();
+
         DefaultSetting();
         //RandomChoiceStage();
 
@@ -62,7 +62,7 @@ public class StageManager : SingleTon<StageManager>
         }
         DisableGrid();
     }
-    private void GetAllScene()
+    public void GetAllScene()
     {
         foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
         {

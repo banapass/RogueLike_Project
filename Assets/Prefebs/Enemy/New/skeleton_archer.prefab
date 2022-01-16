@@ -967,7 +967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699655614618dd44492f7a210c248dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowSpeed: 0
+  arrowSpeed: 20
   fireTf: {fileID: 3387366772839514754}
 --- !u!195 &3722617086987731768
 NavMeshAgent:
@@ -1042,20 +1042,20 @@ MonoBehaviour:
   criticalChance: 0
   damege: 1
   increaceDmg: 0
+  isDie: 0
   coin: {fileID: 1942591113625154718, guid: 84a0c2d8f9ce8eb4f8939e8ef7da696f, type: 3}
   targetTf: {fileID: 0}
   hpBar: {fileID: 0}
   canvas: {fileID: 0}
   controller: {fileID: 0}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 64
   damageText: {fileID: 2274243836118731394, guid: 9d26eb5ad9e156349ab1027b311e3d06, type: 3}
   damageDispalyTf: {fileID: 0}
   controlAnim: {fileID: 0}
   checkRange: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
   isHit: 0
-  isDie: 0
 --- !u!1 &3738008134205684723
 GameObject:
   m_ObjectHideFlags: 0

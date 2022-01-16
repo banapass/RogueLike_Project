@@ -29,6 +29,10 @@ public class GameManager : SingleTon<GameManager>
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         CursorOnOff();
+        if (SceneManager.GetActiveScene().name.IndexOf("Stage") == -1)
+        {
+            CursorOn();
+        }
     }
 
     // 적이 스테이지에 남아있는지 체크

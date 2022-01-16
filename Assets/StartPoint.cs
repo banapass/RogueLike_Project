@@ -9,11 +9,9 @@ public class StartPoint : MonoBehaviour
     private void Awake()
     {
         SetPlayerPos();
-    }
-    private void Start()
-    {
 
     }
+
     private void SetPlayerPos()
     {
         if (GameObject.FindGameObjectWithTag("Player") != null)
@@ -21,6 +19,8 @@ public class StartPoint : MonoBehaviour
             GameObject temp = GameObject.FindGameObjectWithTag("Player");
             temp.transform.position = transform.localPosition;
             temp.transform.rotation = transform.localRotation;
+
+
         }
         else
         {
@@ -30,6 +30,8 @@ public class StartPoint : MonoBehaviour
                 Instantiate(temps[i], transform.localPosition, transform.localRotation);
             }
         }
+
         SaveAndLoad.instance.Load(scene, mode);
     }
+
 }
