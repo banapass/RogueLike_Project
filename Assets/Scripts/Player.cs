@@ -115,39 +115,30 @@ public class Player : Character, ISaveTarget
     void Update()
     {
         playerAnim.SetFloat("AttackSpeed", atkSpeed);
-        //if (Input.GetKeyDown(KeyCode.F))
-        //{
-        //    OnEquipWeapon();
-        //}
-        //if (Input.GetKeyDown(KeyCode.D))
-        //{
-        //    OnReleaseWeapon();
-        //}
-    }
-    // 미리 정해놓은 위치에 현제 장착하고 있는 무기 세팅
-    private void OnEquipWeapon()
-    {
-        if (currentWeapon != null)
-        {
-            Destroy(currentWeapon);
-            Debug.Log("Destroy");
-        }
-        GameObject temp = Instantiate(currentWeapon);
-        temp.transform.SetParent(weaponPoint, false);
-        temp.transform.position = weaponPoint.position;
-        temp.transform.rotation = weaponPoint.rotation;
-        EquipWeapon = temp.GetComponent<Weapon>();
+
 
     }
-    private void OnReleaseWeapon()
-    {
-        EquipWeapon = null;
-        Destroy(weaponPoint.GetChild(0));
-    }
-    public void GetCoin(int count)
-    {
-        coin += count;
-    }
+    // 미리 정해놓은 위치에 현제 장착하고 있는 무기 세팅
+    // private void OnEquipWeapon()
+    // {
+    //     if (currentWeapon != null)
+    //     {
+    //         Destroy(currentWeapon);
+    //         Debug.Log("Destroy");
+    //     }
+    //     GameObject temp = Instantiate(currentWeapon);
+    //     temp.transform.SetParent(weaponPoint, false);
+    //     temp.transform.position = weaponPoint.position;
+    //     temp.transform.rotation = weaponPoint.rotation;
+    //     EquipWeapon = temp.GetComponent<Weapon>();
+
+    // }
+    // private void OnReleaseWeapon()
+    // {
+    //     EquipWeapon = null;
+    //     Destroy(weaponPoint.GetChild(0));
+    // }
+
     #region 
     // 비활성화 or Destroy 
     // Die애니메이션  실행

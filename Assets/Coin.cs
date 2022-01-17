@@ -23,7 +23,7 @@ public class Coin : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Player>().GetCoin(coinCount);
+            // other.gameObject.GetComponent<Player>().GetCoin(coinCount);
             gameObject.SetActive(false);
         }
     }

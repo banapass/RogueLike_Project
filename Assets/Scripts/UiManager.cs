@@ -63,7 +63,7 @@ public class UiManager : SingleTon<UiManager>
     }
     private void State()
     {
-        if (player != null)
+        if (player != null && SceneManager.GetActiveScene().name.IndexOf("Title") == -1)
         {
             hpbar.transform.parent.gameObject.SetActive(true);
             hpbar.fillAmount = (player.CurrentHp / player.maxHp);
@@ -94,10 +94,12 @@ public class UiManager : SingleTon<UiManager>
     }
     public void Title()
     {
+        gameOver.SetActive(false);
         SceneManager.LoadScene("Title");
     }
     public void StartGameOverCo()
     {
+
         StartCoroutine(GameOverPanel());
     }
     private IEnumerator GameOverPanel()

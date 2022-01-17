@@ -814,6 +814,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6228383819187210472, guid: 04d971246d31ae742b6daef22fedb4f6, type: 3}
+      propertyPath: m_text
+      value: 'BackToTitle
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228383819187210472, guid: 04d971246d31ae742b6daef22fedb4f6, type: 3}
       propertyPath: m_fontColor.b
       value: 1
       objectReference: {fileID: 0}
@@ -1041,6 +1047,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6228383820411457973, guid: 04d971246d31ae742b6daef22fedb4f6, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6228383820815237904, guid: 04d971246d31ae742b6daef22fedb4f6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1233,7 +1243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &717576556
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1513,7 +1523,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 733472388}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 689562899}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: Title
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &733472388
 MonoBehaviour:
   m_ObjectHideFlags: 0
