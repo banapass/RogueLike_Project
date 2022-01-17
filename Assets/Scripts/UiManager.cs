@@ -127,7 +127,7 @@ public class UiManager : SingleTon<UiManager>
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !player.isDie)
         {
-            if (menuStack.Count <= 0)
+            if (menuStack.Count <= 0 && SceneManager.GetActiveScene().name.IndexOf("Stage") != -1)
             {
                 isMenuOpen = true;
                 Time.timeScale = 0;
@@ -150,7 +150,8 @@ public class UiManager : SingleTon<UiManager>
     }
     public void Option()
     {
-        menuStack.Peek().SetActive(false);
+        if (menuStack.Count > 0)
+            menuStack.Peek().SetActive(false);
         menuStack.Push(option);
         option.SetActive(true);
     }
@@ -160,6 +161,10 @@ public class UiManager : SingleTon<UiManager>
         {
             menuStack.Pop().SetActive(false);
         }
+    }
+    public void AppQuit()
+    {
+        Application.Quit();
     }
 
 }

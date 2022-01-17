@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.SceneManagement;
-using Newtonsoft.Json;
 
 [System.Serializable]
 public class SaveData : ISaveTarget
@@ -94,17 +93,13 @@ public class SaveAndLoad : SingleTon<SaveAndLoad>
         Player target = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         File.WriteAllText(saveData_Directroy + saveFileName, JsonUtility.ToJson(target.SavaDataProperty));
-        Debug.Log("Save");
+
     }
-    // private void SetPlayer<T>(T target, T apply) where T : ISaveTarget
-    // {
-    //     apply.Atk = target.Atk;
-    // }
+
 
     private void SetPlayer(SaveData target, SaveData apply)
     {
         target = apply;
-        Debug.Log("Target" + target.currentHp);
         File.WriteAllText(saveData_Directroy + saveFileName, JsonUtility.ToJson(target, true));
     }
 
@@ -124,8 +119,6 @@ public class SaveAndLoad : SingleTon<SaveAndLoad>
         {
             File.WriteAllText(saveData_Directroy + saveFileName, JsonUtility.ToJson(target.SavaDataProperty, true));
         }
-
-        Debug.Log("로드 후 플레이어의 hp " + target.saveData.currentHp);
 
     }
 }

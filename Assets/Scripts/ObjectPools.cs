@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-// 만들 오브젝트와 생성 갯수 설정용
+// 만들 오브젝트와 생성 갯수 설정
 [System.Serializable]
 public struct PoolIngredient
 {
@@ -32,14 +32,9 @@ public class Pool : MonoBehaviour
 public class ObjectPools : SingleTon<ObjectPools>
 {
 
-    //public static ObjectPools instance;
     public List<PoolIngredient> poolingPrefabs;
     private Dictionary<string, Pool> poolingDic = new Dictionary<string, Pool>();
-    // private void Awake()
-    // {
-    //     instance = this;
-    // }
-    // Start is called before the first frame update
+
     void Start()
     {
 
@@ -69,7 +64,6 @@ public class ObjectPools : SingleTon<ObjectPools>
             Debug.Log(instance.poolingDic[partsName].pooling.Count);
             obj.transform.SetParent(null);
             obj.SetActive(true);
-            //Debug.Log("가져감");
             return obj;
         }
         else

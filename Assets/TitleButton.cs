@@ -15,5 +15,7 @@ public class TitleButton : MonoBehaviour
     {
         Button[] buttons = GetComponentsInChildren<Button>();
         buttons[0].onClick.AddListener(UiManager.instance.StartButton);
+        buttons[1].onClick.AddListener(UiManager.instance.Option);
+        buttons[2].onClick.AddListener(UiManager.instance.AppQuit);
     }
 }
