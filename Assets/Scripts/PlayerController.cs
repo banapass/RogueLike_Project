@@ -35,26 +35,6 @@ public class PlayerController : MonoBehaviour
             Attack();
         }
 
-
-        // if (Input.GetMouseButtonDown(0))
-        // {
-        //     playerAnim.SetTrigger("Combo1");
-        // }
-
-        //if(playerAnim.GetCurrentAnimatorStateInfo(0).IsName("GreatSword_Attack")&&
-        //   playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0)
-        //{
-        //    if(isFirst)
-        //    {
-        //        Debug.Log("aaa");
-        //        isFirst = false;
-        //    }
-
-        //}
-        //if (EndAnim("GreatSword_Attack",1))
-        //{
-        //    isFirst = true;
-        //}
     }
     #region 애니메이션 구간 확인용
     public bool EndAnim(string animName, float time = 0.99f)

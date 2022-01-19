@@ -95,6 +95,8 @@ public class UiManager : SingleTon<UiManager>
     public void Title()
     {
         gameOver.SetActive(false);
+        if (menuStack.Count > 0)
+            menuStack.Pop().SetActive(false);
         SceneManager.LoadScene("Title");
     }
     public void StartGameOverCo()

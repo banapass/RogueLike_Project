@@ -1114,7 +1114,7 @@ MonoBehaviour:
   maxHp: 500
   currentHp: 500
   atk: 150
-  def: 100
+  def: 150
   criticalChance: 0
   damege: 1
   increaceDmg: 0
