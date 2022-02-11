@@ -26,15 +26,15 @@ public class EnemyController : AiController
         else
             Attack();
 
-        if (anim.SetAnim("Attack", 0.7f, 0.9f))
-        {
+        // if (anim.SetAnim("Attack", 0.7f, 0.9f))
+        // {
 
-            Debug.Log("AttackEnd");
-        }
-        if (anim.EndAnim("Attack", 1))
-        {
-            Debug.Log("Player");
-        }
+        //     Debug.Log("AttackEnd");
+        // }
+        // if (anim.EndAnim("Attack", 1))
+        // {
+        //     Debug.Log("Player");
+        // }
 
     }
 

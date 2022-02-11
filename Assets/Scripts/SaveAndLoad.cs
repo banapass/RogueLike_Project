@@ -81,7 +81,6 @@ public class SaveAndLoad : SingleTon<SaveAndLoad>
     private void OnEnable()
     {
         SceneManager.sceneLoaded += Load;
-
     }
     private void OnDisable()
     {
@@ -95,14 +94,6 @@ public class SaveAndLoad : SingleTon<SaveAndLoad>
         File.WriteAllText(saveData_Directroy + saveFileName, JsonUtility.ToJson(target.SavaDataProperty));
 
     }
-
-
-    private void SetPlayer(SaveData target, SaveData apply)
-    {
-        target = apply;
-        File.WriteAllText(saveData_Directroy + saveFileName, JsonUtility.ToJson(target, true));
-    }
-
 
     public void Load(Scene scene, LoadSceneMode mode)
     {
@@ -120,5 +111,11 @@ public class SaveAndLoad : SingleTon<SaveAndLoad>
             File.WriteAllText(saveData_Directroy + saveFileName, JsonUtility.ToJson(target.SavaDataProperty, true));
         }
 
+    }
+
+    private void SetPlayer(SaveData target, SaveData apply)
+    {
+        target = apply;
+        File.WriteAllText(saveData_Directroy + saveFileName, JsonUtility.ToJson(target, true));
     }
 }

@@ -12,14 +12,15 @@ public class CameraMovement : MonoBehaviour
     private float rotY;
 
     public float sens;
-    public Transform cam;
-    public Vector3 dirNormalized;
-    public Vector3 finalDir;
-    public float minDistance;
-    public float maxDistance;
+    [SerializeField] private Transform cam;
+    [SerializeField] private Vector3 dirNormalized;
+    [SerializeField] private Vector3 finalDir;
+    [SerializeField] private float minDistance;
+    [SerializeField] private float maxDistance;
     private float currentDistnace;
-    public float finalDistance;
-    public float smooth = 10;
+    private float finalDistance;
+    private float smooth = 10;
+    [SerializeField] private float zoomSmooth;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,15 +33,13 @@ public class CameraMovement : MonoBehaviour
         targetTf = GameObject.FindGameObjectWithTag("FollowCam").transform;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void FixedUpdate()
     {
         CameraRotation();
-    }
-    void LateUpdate()
-    {
         FollowCamera();
     }
+
     // 카메라 회전
     void CameraRotation()
     {
@@ -58,7 +57,7 @@ public class CameraMovement : MonoBehaviour
 
         finalDir = transform.TransformPoint(dirNormalized * currentDistnace);
 
-        currentDistnace -= Input.GetAxis("Mouse ScrollWheel");
+        currentDistnace -= Input.GetAxis("Mouse ScrollWheel") * zoomSmooth;
         currentDistnace = Mathf.Clamp(currentDistnace, minDistance, maxDistance);
 
         RaycastHit hit;

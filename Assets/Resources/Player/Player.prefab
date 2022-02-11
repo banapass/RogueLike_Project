@@ -1113,7 +1113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 500
   currentHp: 500
-  atk: 150
+  atk: 300
   def: 150
   criticalChance: 0
   damege: 1

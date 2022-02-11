@@ -136,5 +136,4 @@ MonoBehaviour:
   finalDir: {x: 0, y: 0, z: 0}
   minDistance: 1
   maxDistance: 5
-  finalDistance: 0
-  smooth: 10
+  zoomSmooth: 4

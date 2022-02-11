@@ -25,17 +25,10 @@ public class StageManager : SingleTon<StageManager>
     // Start is called before the first frame update
     void Start()
     {
-
-
-
         DefaultSetting();
         //RandomChoiceStage();
+    }
 
-    }
-    private void Update()
-    {
-        Debug.Log(isOpen);
-    }
     private void OnEnable()
     {
         SceneManager.sceneLoaded += StageCheck;
@@ -61,6 +54,9 @@ public class StageManager : SingleTon<StageManager>
             isOpen = false;
         }
         DisableGrid();
+        Time.timeScale = 1;
+        UiManager.instance.isMenuOpen = false;
+
     }
     public void GetAllScene()
     {

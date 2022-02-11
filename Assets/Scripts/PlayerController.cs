@@ -107,8 +107,6 @@ public class PlayerController : MonoBehaviour
         bool temp = Convert.ToBoolean(boolCheck);
         isAttack = temp;
         weaponCol.enabled = temp;
-
-
     }
     #endregion
 
@@ -116,7 +114,7 @@ public class PlayerController : MonoBehaviour
     private void Dodge()
     {
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             isDodge = true;
             SetAttack(0);
