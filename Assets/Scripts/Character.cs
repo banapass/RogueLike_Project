@@ -75,4 +75,5 @@ public class Character : MonoBehaviour
     }
     virtual public void OnHit(Character character, Transform hit) { }
 
+   
 }

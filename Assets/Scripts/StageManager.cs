@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor;
+
 
 
 public class StageManager : SingleTon<StageManager>
@@ -58,16 +58,18 @@ public class StageManager : SingleTon<StageManager>
         UiManager.instance.isMenuOpen = false;
 
     }
-    public void GetAllScene()
+
+    public void GetAllScenes()
     {
-        foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
+        int sceneCount = SceneManager.sceneCountInBuildSettings;
+
+        for (int i = 0; i < sceneCount; i++)
         {
-            if (scene.path.IndexOf("Stage") != -1)
+            if (SceneUtility.GetScenePathByBuildIndex(i).IndexOf("Stage") != -1)
             {
-                scenes.Add(scene.path);
+                scenes.Add(SceneUtility.GetScenePathByBuildIndex(i));
             }
         }
-
     }
     public static void RandomChoiceStage()
     {

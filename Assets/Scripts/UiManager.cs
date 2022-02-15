@@ -82,7 +82,7 @@ public class UiManager : SingleTon<UiManager>
             File.Delete(Application.dataPath + "/Save/PlayerData.json");
             Debug.Log("Delete");
         }
-        StageManager.instance.GetAllScene();
+        StageManager.instance.GetAllScenes();
         StageManager.RandomChoiceStage();
     }
 
