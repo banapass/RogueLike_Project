@@ -67,6 +67,7 @@ public class BossController : AiController
             isCoolTime = true;
         }
     }
+
     private IEnumerator SummonCoolTime()
     {
         Debug.Log("Summon");

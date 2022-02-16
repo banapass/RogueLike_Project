@@ -62,6 +62,7 @@ public class StageManager : SingleTon<StageManager>
     public void GetAllScenes()
     {
         int sceneCount = SceneManager.sceneCountInBuildSettings;
+        scenes.Clear();
 
         for (int i = 0; i < sceneCount; i++)
         {
@@ -71,6 +72,7 @@ public class StageManager : SingleTon<StageManager>
             }
         }
     }
+
     public static void RandomChoiceStage()
     {
         int randomNum;
