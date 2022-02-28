@@ -63,7 +63,15 @@ public class Player : Character, ISaveTarget
 
     public override float CurrentHp
     {
-        get { return currentHp; }
+        get
+        {
+            if (currentHp < 0)
+            {
+                currentHp = 0;
+            }
+            return currentHp;
+
+        }
         set
         {
             currentHp = value;
@@ -72,6 +80,7 @@ public class Player : Character, ISaveTarget
                 isDie = true;
                 deadEvent();
                 currentHp = 0;
+                Debug.Log("asd");
             }
             if (currentHp > maxHp)
             {
