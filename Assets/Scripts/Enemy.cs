@@ -117,13 +117,12 @@ public class Enemy : Character
         float totalAtk = character.atk * (character.damege + character.increaceDmg);
         if (!isHit && !isDie && !controller.isDodge)
         {
-            if (Critical(character))
+            if (Critical((Player)character))
             {
                 ShowDamage(((int)(totalAtk - (int)DamageReduction(totalAtk)) * 2));
                 CurrentHp -= (totalAtk - (int)DamageReduction(totalAtk)) * 2;
                 ObjectPools.GetParts("atkCritical").transform.position = hit.transform.position;
                 controlAnim.SetTrigger("Hit");
-                Debug.Log("Critical");
 
             }
             else
@@ -134,11 +133,10 @@ public class Enemy : Character
                 controlAnim.SetTrigger("Hit");
             }
 
-            Debug.Log(name + " " + "현재 Hp : " + CurrentHp + "데미지 : " + (totalAtk - (int)DamageReduction(totalAtk)));
             isHit = true;
         }
     }
-    protected bool Critical(Character player)
+    protected bool Critical(Player player)
     {
         int randomNum = Random.Range(1, 101);
         if (randomNum <= player.criticalChance)
@@ -166,13 +164,5 @@ public class Enemy : Character
     {
         deadEvent();
     }
-    // 아이템 드랍
-    protected void OnDestroy()
-    {
 
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-
-    }
 }

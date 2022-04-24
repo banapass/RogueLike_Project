@@ -67,10 +67,10 @@ public class BossController : AiController
             isCoolTime = true;
         }
     }
-
+    // 쿨타임 체크용 코루틴
     private IEnumerator SummonCoolTime()
     {
-        Debug.Log("Summon");
+        
         while (isCoolTime)
         {
             if (isSpawn)
@@ -86,6 +86,7 @@ public class BossController : AiController
             yield return null;
         }
     }
+    // 양옆 몬스터 소환
     private void SummonEnemy()
     {
 

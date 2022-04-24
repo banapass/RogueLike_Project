@@ -79,12 +79,14 @@ public class StageManager : SingleTon<StageManager>
         while (true)
         {
             randomNum = Random.Range(0, instance.scenes.Count);
+            // 일반 스테이지를 랜덤으로 불러옴
             if (instance.scenes[randomNum].IndexOf("Boss") == -1)
             {
                 LoadingScene(instance.scenes[randomNum]);
                 instance.scenes.Remove(instance.scenes[randomNum]);
                 break;
             }
+            // 보스 스테이지
             else if (instance.scenes.Count == 1)
             {
                 LoadingScene(instance.scenes[0]);
@@ -92,7 +94,6 @@ public class StageManager : SingleTon<StageManager>
                 break;
             }
         }
-
 
         stageCount++;
     }

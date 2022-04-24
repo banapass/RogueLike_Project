@@ -4,6 +4,7 @@ using UnityEngine;
 
 
 // 만들 오브젝트와 생성 갯수 설정
+
 [System.Serializable]
 public struct PoolIngredient
 {
@@ -37,10 +38,8 @@ public class ObjectPools : SingleTon<ObjectPools>
 
     void Start()
     {
-
         CreatePools();
     }
-
 
     private void CreatePools()
     {
@@ -49,7 +48,6 @@ public class ObjectPools : SingleTon<ObjectPools>
             Pool tempPool = new Pool();
             tempPool.CreatePool(poolingPrefabs[i].prefab, transform, poolingPrefabs[i].poolingCount);
             poolingDic.Add(poolingPrefabs[i].prefab.name, tempPool);
-            Debug.Log(poolingPrefabs[i].prefab.name);
         }
     }
     /// <summary>
