@@ -142,7 +142,6 @@ public class Player : Character, ISaveTarget
             float totalAtk = character.atk * (character.damege + character.increaceDmg);
 
             CurrentHp -= totalAtk - (int)DamageReduction(totalAtk);
-            Debug.Log(CurrentHp + " " + totalAtk);
             ObjectPools.GetParts("EnemyAtkEffect").transform.position = hit.transform.position;
         }
 

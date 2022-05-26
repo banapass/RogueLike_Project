@@ -11,7 +11,6 @@ public struct PoolIngredient
     public GameObject prefab;
     public int poolingCount;
 }
-
 public class Pool : MonoBehaviour
 {
     public Queue<GameObject> pooling = new Queue<GameObject>();

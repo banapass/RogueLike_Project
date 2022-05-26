@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         bool isMove = moveInput.magnitude != 0; // 움직이는지 확인
         playerAnim.SetBool("isMove", isMove); // 움짐임에 따라 애니메이션 실행
 
-        if (isMove /*startTime*/)
+        if (isMove)
         {
             moveSpeed = walkSpeed;
             Vector3 lookForward = new Vector3(cameraArm.forward.x, 0f, cameraArm.forward.z).normalized; // 앞뒤
@@ -77,29 +77,21 @@ public class PlayerController : MonoBehaviour
     #region 공격관련
     private void Attack()
     {
-
-
         if (!isAttack)
         {
             if (Input.GetMouseButtonDown(0))
             {
                 playerAnim.SetTrigger("Attack");
-
             }
-
         }
         for (int i = 1; i < 4; i++)
         {
-
             if (SetAnim("GreatSword_Attack" + i, 0.3f, 0.7f) && !isDodge)
             {
                 if (Input.GetMouseButton(0)) // 입력가능 구간안에서 마우스 클릭시 콤보어택
                     playerAnim.SetTrigger("Combo");
             }
-
         }
-
-
     }
     public void SetAttack(int boolCheck)
     {
